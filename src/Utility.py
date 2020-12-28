@@ -27,14 +27,7 @@ class Utility():
     @staticmethod
     def find_match(request, DATA_CONSTANT:str):
 
-        soup = BeautifulSoup(request.text, "html.parser")
-        scripts = soup.find_all("script")
-
         match_pattern = re.compile(DATA_PATTERN.format(DATA_CONSTANT))
-
-        for script in scripts:
-            match = re.search(match_pattern, str(script))
-            if match:
-                break
+        match = re.search(match_pattern, request.text)
 
         return match
