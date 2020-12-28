@@ -1,9 +1,4 @@
-from bs4 import BeautifulSoup
-import requests
-import re
-from constants import *
-import json
-from Utility import Utility
+from .Utility import Utility
 
 class UnderstatPlayer():
 
