@@ -2,4 +2,5 @@
 src/sample.py
 src/__pycache__
 build/
+xgpy.egg-info/
 tests/__pycache__
