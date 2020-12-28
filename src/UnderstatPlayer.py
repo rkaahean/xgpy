@@ -1,4 +1,4 @@
-from .Utility import Utility
+from Utility import Utility
 
 class UnderstatPlayer():
 
