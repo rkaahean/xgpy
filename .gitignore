@@ -1,2 +1,3 @@
 # Ignoring the cache
+src/sample.py
 src/__pycache__
