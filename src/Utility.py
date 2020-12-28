@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 import re
-from constants import *
+from .constants import *
 import json
 
 class Utility():
