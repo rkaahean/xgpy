@@ -7,3 +7,5 @@ dist/
 .pytest_cache/
 tests/__pycache__
 docs/build/
+docs/make.bat
+docs/Makefile
