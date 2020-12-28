@@ -3,6 +3,7 @@ import requests
 import re
 from constants import *
 import json
+from Utility import Utility
 
 class UnderstatPlayer():
 
@@ -12,22 +13,9 @@ class UnderstatPlayer():
         self.id = player_id
 
     def get_player_match_data(self):
-        r = requests.get(PLAYER_URL.format(self.id))
 
-        soup = BeautifulSoup(r.text, 'html.parser')
-        scripts = soup.find_all("script")
+        base_url = Utility().generate_request_url(PLAYER_URL, self.id)
+        r = Utility().generate_request_object(base_url)
+        match = Utility().find_match(r, PLAYER_MATCHES_DATA)
 
-        def string_escape(s, encoding='utf-8'):
-            return (s.encode('latin1')         # To bytes, required by 'unicode-escape'
-                     .decode('unicode-escape') # Perform the actual octal-escaping decode
-                     .encode('latin1')         # 1:1 mapping back to bytes
-                     .decode(encoding))        # Decode original encoding
-
-        data_pattern = re.compile(DATA_PATTERN.format(PLAYER_MATCHES_DATA))
-
-        for script in scripts:
-            match = re.search(data_pattern, str(script))
-            if match:
-                break
-
-        return string_escape(match.group(1))
+        return Utility.string_escape(match.group(1))
