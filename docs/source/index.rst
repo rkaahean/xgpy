@@ -1,16 +1,12 @@
-.. xgpy documentation master file, created by
-   sphinx-quickstart on Sun Dec 27 23:37:29 2020.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
-Welcome to xgpy's documentation!
-================================
+A complete guide to the `xgpy` package.
+========================================
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-
+   support/install
+   support/getting_started
 
 Indices and tables
 ==================
