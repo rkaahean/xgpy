@@ -1,6 +1,6 @@
 import requests
 import re
-from src.constants import *
+from constants import *
 import json
 
 class Utility():
@@ -21,6 +21,9 @@ class Utility():
 
     find_match(request, match_string)
         find a match in the request based on the match string provided.
+
+    filter_data(json_data, **filter)
+        filter data based on the arguments provided.
 
     """
 
@@ -105,3 +108,30 @@ class Utility():
         match = re.search(match_pattern, request.text)
 
         return match
+
+    @staticmethod
+    def filter_data(json_data, **filter):
+        """
+        Parameters
+        ----------
+        json_data: json
+            json_data to be filtered
+        **filter: dict
+            the following filters are currently supported:
+                - season
+                - from_date
+                - to_date
+        Returns
+        -------
+        Match
+            returns a regex match object
+        """
+
+        season = filter.get(ARG_SEASON, '')
+
+
+        data = ''
+        if season:
+            data = [x for x in json_data if x[ARG_SEASON] == season]
+
+        return data
