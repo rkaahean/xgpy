@@ -6,9 +6,9 @@ A complete guide to the `src` package.
    :caption: Contents:
 
    support/install
-   support/getting_started
-   understat/functions.rst
-   tmp/src.rst
+   support/introduction
+   understat/getting_started
+
 
 Indices and tables
 ==================

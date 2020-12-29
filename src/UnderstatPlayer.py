@@ -14,7 +14,7 @@ class UnderstatPlayer():
         the id of the player instance in understat.
 
     Methods
-    -------
+    --------
     get_player_match_data()
         get xG data for the player in question.
 
