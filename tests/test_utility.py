@@ -1,3 +1,7 @@
+import sys, os
+myPath = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, myPath + '/../')
+
 from Utility import Utility
 from constants import PLAYER_URL, TEST_PLAYER_ID, TEST_PLAYER_URL
 
