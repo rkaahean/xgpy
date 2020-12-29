@@ -7,7 +7,7 @@ A complete guide to the `src` package.
 
    support/install
    support/introduction
-   getting_started
+   understat/getting_started
 
 
 Indices and tables

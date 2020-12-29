@@ -1,8 +1,8 @@
-Getting Started with understat data
+The UnderstatPlayer module
 ====================================
 
 .. toctree::
    :maxdepth: 2
-   :caption: Understanding various endpoints of understat
+   :caption: Retrevining various statistics about a particular player
 
-   get_player_match_data
+   player/get_player_match_data
