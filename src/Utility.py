@@ -1,6 +1,6 @@
 import requests
 import re
-from constants import *
+from src.constants import *
 import json
 
 class Utility():
