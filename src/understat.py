@@ -1,5 +1,4 @@
 from Utility import Utility
-from constants import *
 import json
 
 class UnderstatPlayer():

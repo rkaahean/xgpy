@@ -1,6 +1,6 @@
 import requests
 import re
-from constants import *
+from constants import PLAYER_URL, DATA_PATTERN, ARG_SEASON
 import json
 
 class Utility():
