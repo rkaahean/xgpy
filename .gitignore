@@ -3,7 +3,7 @@ __pycache__
 src/sample.py
 src/__pycache__
 build/
-xgpy.egg-info/
+src.egg-info/
 dist/
 .pytest_cache/
 tests/__pycache__

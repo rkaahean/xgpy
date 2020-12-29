@@ -17,7 +17,7 @@ sys.path.insert(0, os.path.abspath('../../src/'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'xgpy'
+project = 'src'
 copyright = '2020, Ranjan Srinivas'
 author = 'Ranjan Srinivas'
 

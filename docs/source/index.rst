@@ -1,4 +1,4 @@
-A complete guide to the `xgpy` package.
+A complete guide to the `src` package.
 ========================================
 
 .. toctree::
