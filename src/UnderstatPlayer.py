@@ -1,5 +1,5 @@
-from Utility import Utility
-from constants import *
+from src.Utility import Utility
+from src.constants import *
 
 class UnderstatPlayer():
 
