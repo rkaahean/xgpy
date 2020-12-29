@@ -7,6 +7,8 @@ A complete guide to the `xgpy` package.
 
    support/install
    support/getting_started
+   understat/functions.rst
+   tmp/src.rst
 
 Indices and tables
 ==================
