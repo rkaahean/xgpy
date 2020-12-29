@@ -1,11 +1,18 @@
-# Ignoring the cache
-__pycache__
+# Hide compile info in src/
 src/sample.py
 src/__pycache__
-build/
 src.egg-info/
+
+# Hide build info in root directory
+build/
 dist/
 .pytest_cache/
+__pycache__
+
+# Hide test compile info
 tests/__pycache__
+
+# Hide docs compile info
 docs/make.bat
 docs/Makefile
+docs/source/_*/
