@@ -1,5 +1,5 @@
-from Utility import Utility
-from constants import PLAYER_URL, TEST_PLAYER_ID, TEST_PLAYER_URL
+from src.Utility import Utility
+from src.constants import PLAYER_URL, TEST_PLAYER_ID, TEST_PLAYER_URL
 
 class TestUtility:
 
