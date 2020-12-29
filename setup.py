@@ -22,7 +22,5 @@ setuptools.setup(
     install_requires=[
         "pytest",
         "requests",
-        "re",
-        "json"
     ]
 )
