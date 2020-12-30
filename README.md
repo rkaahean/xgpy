@@ -1,11 +1,12 @@
 
+<p align="center">
 
-# xgpy: poweful python wrapper for football data
+# xgpy: powerful python wrapper for football data
 
-[![Build Status](https://travis-ci.com/rkaahean/xgpy.svg?branch=main)](https://travis-ci.com/rkaahean/xgpy)&nbsp;&nbsp;
-[![HitCount](http://hits.dwyl.com/rkaahean/xgpy.svg)](http://hits.dwyl.com/rkaahean/xgpy)&nbsp;&nbsp;
-[![Documentation Status](https://readthedocs.org/projects/xgpy/badge/?version=latest)](https://xgpy.readthedocs.io/en/latest/?badge=latest)&nbsp;&nbsp;
-
+<br>
+ <a href="https://travis-ci.com/rkaahean/xgpy"><img src="https://travis-ci.com/rkaahean/xgpy.svg?branch=main"></a>
+ <a href="https://xgpy.readthedocs.io/en/latest/"><img src="https://readthedocs.org/projects/xgpy/badge/?version=latest"></a>
+</p>
 
 ## What is it?
 
@@ -31,3 +32,6 @@ The simplest way to install the package is by pip.
 ```
 pip install xgpy
 ```
+<!-- [![Build Status](https://travis-ci.com/rkaahean/xgpy.svg?branch=main)](https://travis-ci.com/rkaahean/xgpy)&nbsp;&nbsp;
+[![HitCount](http://hits.dwyl.com/rkaahean/xgpy.svg)](http://hits.dwyl.com/rkaahean/xgpy)&nbsp;&nbsp;
+[![Documentation Status](https://readthedocs.org/projects/xgpy/badge/?version=latest)](https://xgpy.readthedocs.io/en/latest/?badge=latest)&nbsp;&nbsp; -->
