@@ -7,6 +7,9 @@ DATA_PATTERN = r"{}\s+=\s+JSON.parse\(\'(.*)\'\)"
 # JSON_CONSTANTS: The variable names which prefix the data
 PLAYER_MATCHES_DATA = "matchesData"
 PLAYER_GROUPED_DATA = "groupsData"
+PLAYER_SHOT_DATA = "shotsData"
+PLAYER_MIN_MAX_DATA = "minMaxPlayerStats"
+PLAYER_POSITIONS = "positionsList"
 
 # Filter constants
 ARG_SEASON = "season"
