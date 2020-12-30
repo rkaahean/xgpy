@@ -1,7 +1,7 @@
 # Hide compile info in src/
-src/sample.py
-src/__pycache__
-src.egg-info/
+xgpy/sample.py
+xgpy/__pycache__
+xgpy.egg-info/
 
 # Hide build info in root directory
 build/

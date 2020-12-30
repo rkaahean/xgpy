@@ -3,8 +3,8 @@
 class TestUnderstat():
 
     def test_get_player_match_data(self):
-        from src.constants import TEST_PLAYER_ID, TEST_FILTER
-        from src.understat import UnderstatPlayer
+        from xgpy.constants import TEST_PLAYER_ID, TEST_FILTER
+        from xgpy.understat import UnderstatPlayer
 
         tp = UnderstatPlayer(TEST_PLAYER_ID)
         data = tp.get_player_match_data(**TEST_FILTER)

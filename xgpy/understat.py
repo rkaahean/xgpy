@@ -1,5 +1,5 @@
-from src.constants import *
-from src.Utility import Utility
+from xgpy.constants import *
+from xgpy.Utility import Utility
 import json
 
 

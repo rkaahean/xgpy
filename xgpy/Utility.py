@@ -1,6 +1,6 @@
 import requests
 import re
-from src.constants import *
+from xgpy.constants import *
 import json
 
 
@@ -27,7 +27,6 @@ class Utility():
         build and connect to the url and find desired data
 
     """
-
 
 
     @staticmethod

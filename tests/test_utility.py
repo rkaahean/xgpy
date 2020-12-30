@@ -1,5 +1,5 @@
-from src.Utility import Utility
-from src.constants import PLAYER_URL, TEST_PLAYER_ID, TEST_PLAYER_URL
+from xgpy.Utility import Utility
+from xgpy.constants import PLAYER_URL, TEST_PLAYER_ID, TEST_PLAYER_URL
 
 class TestUtility():
 
