@@ -18,7 +18,7 @@ class UnderstatPlayer():
     Methods
     --------
     get_player_match_data()
-        get xG data for the player in question.
+        get xG data for the player.
 
     """
 
@@ -36,7 +36,12 @@ class UnderstatPlayer():
 
     def get_player_match_data(self, **filter):
         """
-        get the match data for the player.
+        get xG data for the player.
+
+        Parameter
+        ---------
+        **filter: dict
+            a dictionary of possible filters.
 
         Returns
         -------
@@ -44,16 +49,11 @@ class UnderstatPlayer():
             a json object contatining the information.
 
         """
-
         # First generate the URL from which data will be fetched
         # Next, generate a request object based on the URL
         # Finally, using regular expressions, finding the json
         # data using the keyword for the query
-
-        base_url = Utility.generate_request_url(PLAYER_URL, self.id)
-        r = Utility.generate_request_object(base_url)
-        match = Utility.find_match(r, PLAYER_MATCHES_DATA)
-        string_data = Utility.string_escape(match.group(1))
+        string_data = Utility.build_and_match(PLAYER_URL, self.id, PLAYER_MATCHES_DATA)
 
         # TODO: What if empty?
         json_data = json.loads(string_data)
@@ -61,5 +61,47 @@ class UnderstatPlayer():
         # TODO: need to convert filtering to a function
         season = filter.get('season', '')
 
-        clean_data = [x for x in json_data if x['season'] == season]
-        return clean_data
+        # if a filter exists, do something
+        if season:
+            json_data = [x for x in json_data if x['season'] == season]
+
+        return json_data
+
+    def get_player_grouped_data_by_type(self, type = 'season', **filter):
+
+        """
+        get the per season data for the player.
+        Parameter
+        ---------
+        type: str
+            the type of data to be fetched. see website for more information.
+
+        **filter: dict
+            a dictionary of possible filters.
+
+        Returns
+        -------
+        json
+            a json object contatining the information.
+
+        """
+        # First generate the URL from which data will be fetched
+        # Next, generate a request object based on the URL
+        # Finally, using regular expressions, finding the json
+        # data using the keyword for the query
+        string_data = Utility.build_and_match(PLAYER_URL, self.id, PLAYER_GROUPED_DATA)
+
+        # TODO: What if empty?
+        json_data = json.loads(string_data)
+
+        # TODO: Add error handling here
+        json_data = json_data[type]
+
+        # TODO: need to convert filtering to a function
+        season = filter.get('season', '')
+
+        # if a filter exists, do something
+        if season:
+            json_data = [x for x in json_data if x['season'] == season]
+
+        return json_data
