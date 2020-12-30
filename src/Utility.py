@@ -23,10 +23,12 @@ class Utility():
     find_match(request, match_string)
         find a match in the request based on the match string provided.
 
-    filter_data(json_data, **filter)
-        filter data based on the arguments provided.
+    build_and_match(base_url, id, **filter)
+        build and connect to the url and find desired data
 
     """
+
+
 
     @staticmethod
     def generate_request_url(base_url: str, param: str):
@@ -109,3 +111,28 @@ class Utility():
         match = re.search(match_pattern, request.text)
 
         return match
+
+    @staticmethod
+    def build_and_match(base_url: str, id: int, search_keyword: str):
+        """
+        Parameters
+        ----------
+        base_url: str
+            the base_url from where information is to be queried.
+        id: int
+            the understat played_id.
+        search_keyword: str
+            the keyword search for the data to be fetched.
+
+        Returns
+        -------
+        str:
+            returns JSON data in a human readable format
+        """
+
+        base_url = Utility.generate_request_url(base_url, id)
+        r = Utility.generate_request_object(base_url)
+        match = Utility.find_match(r, search_keyword)
+        string_data = Utility.string_escape(match.group(1))
+
+        return string_data
