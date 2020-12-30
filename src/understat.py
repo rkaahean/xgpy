@@ -1,6 +1,7 @@
-from src.Utility import Utility
 from src.constants import *
+from src.Utility import Utility
 import json
+
 
 class UnderstatPlayer():
 
@@ -58,6 +59,10 @@ class UnderstatPlayer():
         json_data = json.loads(string_data)
 
         # TODO: need to add filtering params
-        filtered_data = Utility.filter_data(json_data, **filter)
+        # clean_data = Utility.filter_data(json_data)
+        season = filter.get('season', '')
 
-        return filtered_data
+        clean_data = [x for x in json_data if x['season'] == season]
+
+
+        return clean_data

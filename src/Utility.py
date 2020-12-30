@@ -3,6 +3,7 @@ import re
 from src.constants import *
 import json
 
+
 class Utility():
 
     """
@@ -38,11 +39,10 @@ class Utility():
             value to format the string with (team or player id).
 
         Returns
-        -------
+        --------
         str
             a url string to fetch the data from.
         """
-
         return base_url.format(param)
 
     @staticmethod
@@ -84,12 +84,13 @@ class Utility():
         """
 
         return (s.encode('latin1')         # To bytes, required by 'unicode-escape'
-                 .decode('unicode-escape') # Perform the actual octal-escaping decode
-                 .encode('latin1')         # 1:1 mapping back to bytes
-                 .decode(encoding))        # Decode original encoding
+                # Perform the actual octal-escaping decode
+                .decode('unicode-escape')
+                .encode('latin1')         # 1:1 mapping back to bytes
+                .decode(encoding))        # Decode original encoding
 
     @staticmethod
-    def find_match(request, match_string:str):
+    def find_match(request, match_string: str):
         """
         Parameters
         ----------
@@ -108,30 +109,3 @@ class Utility():
         match = re.search(match_pattern, request.text)
 
         return match
-
-    @staticmethod
-    def filter_data(json_data, **filter):
-        """
-        Parameters
-        ----------
-        json_data: json
-            json_data to be filtered
-        **filter: dict
-            the following filters are currently supported:
-                - season
-                - from_date
-                - to_date
-        Returns
-        -------
-        Match
-            returns a regex match object
-        """
-
-        season = filter.get('season', '')
-
-
-        data = ''
-        if season:
-            data = [x for x in json_data if x['season'] == season]
-
-        return data

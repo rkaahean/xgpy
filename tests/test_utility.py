@@ -13,3 +13,6 @@ class TestUtility:
 
         # assert that the request went through well
         assert Utility.generate_request_object(url).status_code == 200
+
+
+    # Add test for filtering data
