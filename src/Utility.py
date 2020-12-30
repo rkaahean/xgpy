@@ -1,6 +1,6 @@
 import requests
 import re
-from constants import PLAYER_URL, DATA_PATTERN, ARG_SEASON
+from src.constants import *
 import json
 
 class Utility():
@@ -127,11 +127,11 @@ class Utility():
             returns a regex match object
         """
 
-        season = filter.get(ARG_SEASON, '')
+        season = filter.get('season', '')
 
 
         data = ''
         if season:
-            data = [x for x in json_data if x[ARG_SEASON] == season]
+            data = [x for x in json_data if x['season'] == season]
 
         return data
