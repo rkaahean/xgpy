@@ -17,8 +17,20 @@ class UnderstatPlayer():
 
     Methods
     --------
-    get_player_match_data()
+    get_player_match_data(**filter)
         get xG data for the player.
+
+    get_player_grouped_data_by_type(type='season', filter)
+        get grouped statistics of desired type.
+
+    get_player_shot_data(**filter)
+        get shot data.
+
+    get_player_min_max_data(position, **filter)
+        get min, max and average data for player.
+
+    get_player_list_positions()
+        get list of positions for the player.
 
     """
 
@@ -104,4 +116,98 @@ class UnderstatPlayer():
         if season:
             json_data = [x for x in json_data if x['season'] == season]
 
+        return json_data
+
+    def get_player_shot_data(self, **filter):
+
+        """
+        get the shot data for the player.
+        Parameter
+        ---------
+        **filter: dict
+            a dictionary of possible filters.
+
+        Returns
+        -------
+        json
+            a json object contatining the information.
+
+        """
+        # First generate the URL from which data will be fetched
+        # Next, generate a request object based on the URL
+        # Finally, using regular expressions, finding the json
+        # data using the keyword for the query
+        string_data = Utility.build_and_match(PLAYER_URL, self.id, PLAYER_SHOT_DATA)
+
+        # TODO: What if empty?
+        json_data = json.loads(string_data)
+
+        # TODO: need to convert filtering to a function
+        season = filter.get('season', '')
+
+        # if a filter exists, do something
+        if season:
+            json_data = [x for x in json_data if x['season'] == season]
+
+        return json_data
+
+    def get_player_min_max_data(self, position, **filter):
+
+        """
+        get the shot data for the player.
+        Parameter
+        ---------
+        **filter: dict
+            a dictionary of possible filters.
+
+        Returns
+        -------
+        json
+            a json object contatining the information.
+
+        """
+        # First generate the URL from which data will be fetched
+        # Next, generate a request object based on the URL
+        # Finally, using regular expressions, finding the json
+        # data using the keyword for the query
+        string_data = Utility.build_and_match(PLAYER_URL, self.id, PLAYER_MIN_MAX_DATA)
+
+        # TODO: What if empty?
+        json_data = json.loads(string_data)
+
+        # TODO: need to convert filtering to a function
+        season = filter.get('season', '')
+
+        # if a filter exists, do something
+        if season:
+            json_data = [x for x in json_data if x['season'] == season]
+
+        return json_data
+
+    def get_player_list_positions(self):
+
+        """
+        get the possble player locations
+        Parameter
+        ---------
+        **filter: dict
+            a dictionary of possible filters.
+
+        Returns
+        -------
+        json
+            a json object contatining the information.
+
+        """
+        # TODO: currently, all possible positions (even GK for an outfield player) are being listed
+        # would be better if we return just the positions played so far
+
+        # First generate the URL from which data will be fetched
+        # Next, generate a request object based on the URL
+        # Finally, using regular expressions, finding the json
+        # data using the keyword for the query
+        string_data = Utility.build_and_match(PLAYER_URL, self.id, PLAYER_POSITIONS)
+
+        # TODO: What if empty?
+        json_data = json.loads(string_data)
         return json_data
