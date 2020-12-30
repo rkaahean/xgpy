@@ -1,5 +1,3 @@
-
-
 class TestImport():
 
     def test_imports(self):
