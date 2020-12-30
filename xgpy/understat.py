@@ -70,12 +70,8 @@ class UnderstatPlayer():
         # TODO: What if empty?
         json_data = json.loads(string_data)
 
-        # TODO: need to convert filtering to a function
-        season = filter.get('season', '')
-
-        # if a filter exists, do something
-        if season:
-            json_data = [x for x in json_data if x['season'] == season]
+        # TODO: filter data
+        json_data = Utility.filter_data(json_data, **filter)
 
         return json_data
 
@@ -109,12 +105,8 @@ class UnderstatPlayer():
         # TODO: Add error handling here
         json_data = json_data[type]
 
-        # TODO: need to convert filtering to a function
-        season = filter.get('season', '')
-
-        # if a filter exists, do something
-        if season:
-            json_data = [x for x in json_data if x['season'] == season]
+        # TODO: filter data
+        json_data = Utility.filter_data(json_data, **filter)
 
         return json_data
 
@@ -142,12 +134,8 @@ class UnderstatPlayer():
         # TODO: What if empty?
         json_data = json.loads(string_data)
 
-        # TODO: need to convert filtering to a function
-        season = filter.get('season', '')
-
-        # if a filter exists, do something
-        if season:
-            json_data = [x for x in json_data if x['season'] == season]
+        # TODO: filter data
+        json_data = Utility.filter_data(json_data, **filter)
 
         return json_data
 
@@ -175,12 +163,8 @@ class UnderstatPlayer():
         # TODO: What if empty?
         json_data = json.loads(string_data)
 
-        # TODO: need to convert filtering to a function
-        season = filter.get('season', '')
-
-        # if a filter exists, do something
-        if season:
-            json_data = [x for x in json_data if x['season'] == season]
+        # TODO: filter data
+        json_data = Utility.filter_data(json_data, **filter)
 
         return json_data
 

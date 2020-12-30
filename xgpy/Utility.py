@@ -135,3 +135,30 @@ class Utility():
         string_data = Utility.string_escape(match.group(1))
 
         return string_data
+
+    @staticmethod
+    def filter_data(json_data, **filter):
+        """
+        Parameters
+        ----------
+        base_url: str
+            the base_url from where information is to be queried.
+        id: int
+            the understat played_id.
+        search_keyword: str
+            the keyword search for the data to be fetched.
+
+        Returns
+        -------
+        str:
+            returns JSON data in a human readable format
+        """
+
+        # TODO: need to convert filtering to a function
+        season = filter.get('season', '')
+
+        # if a filter exists, do something
+        if season:
+            json_data = [x for x in json_data if x['season'] == season]
+
+        return json_data
