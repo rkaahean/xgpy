@@ -14,5 +14,8 @@ ARG_END_DATE = 'end_date'
 ARG_POSITION = 'position'
 
 # Variables for testing
+TEST_FILTER = {
+    "season": '2020',
+}
 TEST_PLAYER_ID = 1228
 TEST_PLAYER_URL = "https://understat.com/player/{}".format(TEST_PLAYER_ID)

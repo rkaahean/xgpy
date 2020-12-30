@@ -58,11 +58,8 @@ class UnderstatPlayer():
         # TODO: What if empty?
         json_data = json.loads(string_data)
 
-        # TODO: need to add filtering params
-        # clean_data = Utility.filter_data(json_data)
+        # TODO: need to convert filtering to a function
         season = filter.get('season', '')
 
         clean_data = [x for x in json_data if x['season'] == season]
-
-
         return clean_data
