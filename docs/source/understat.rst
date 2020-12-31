@@ -20,6 +20,19 @@ understat.UnderstatPlayer
       -------------------------
       .. automethod:: xgpy.understat.UnderstatPlayer.get_player_min_max_data
 
-      get_player_list_positions
+      get_player_positions
       --------------------------
-      .. automethod:: xgpy.understat.UnderstatPlayer.get_player_list_positions
+      .. automethod:: xgpy.understat.UnderstatPlayer.get_player_positions
+
+      get_player_list_by_league
+      --------------------------
+      .. automethod:: xgpy.understat.UnderstatPlayer.get_player_list_by_league
+
+
+understat.UnderstatTeam
+--------------------------------
+.. automodule:: xgpy.understat
+
+  get_team_league_history
+  --------------------------
+  .. automethod:: xgpy.understat.UnderstatTeam.get_team_league_history
