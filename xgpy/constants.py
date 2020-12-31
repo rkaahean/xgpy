@@ -1,5 +1,6 @@
 # MAIN URL's
 PLAYER_URL = "https://understat.com/player/{}"
+LEAGUE_URL = "https://understat.com/league/{}/{}/"
 
 # Pattern of the JSON variables
 DATA_PATTERN = r"{}\s+=\s+JSON.parse\(\'(.*)\'\)"
@@ -10,6 +11,7 @@ PLAYER_GROUPED_DATA = "groupsData"
 PLAYER_SHOT_DATA = "shotsData"
 PLAYER_MIN_MAX_DATA = "minMaxPlayerStats"
 PLAYER_POSITIONS = "positionsList"
+PLAYER_LIST_DATA = "playersData"
 
 # Filter constants
 ARG_SEASON = "season"
