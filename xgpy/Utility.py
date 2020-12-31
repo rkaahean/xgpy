@@ -30,7 +30,7 @@ class Utility():
 
 
     @staticmethod
-    def generate_request_url(base_url: str, param: str):
+    def generate_request_url(base_url: str, *param: str):
         """
         Parameters
         ----------
@@ -44,7 +44,7 @@ class Utility():
         str
             a url string to fetch the data from.
         """
-        return base_url.format(param)
+        return base_url.format(*param)
 
     @staticmethod
     def generate_request_object(url: str):
@@ -112,7 +112,7 @@ class Utility():
         return match
 
     @staticmethod
-    def build_and_match(base_url: str, id: int, search_keyword: str):
+    def build_and_match(base_url: str, search_keyword: str, *url_params: list):
         """
         Parameters
         ----------
@@ -129,7 +129,8 @@ class Utility():
             returns JSON data in a human readable format
         """
 
-        base_url = Utility.generate_request_url(base_url, id)
+        base_url = Utility.generate_request_url(base_url, *url_params)
+        print(base_url)
         r = Utility.generate_request_object(base_url)
         match = Utility.find_match(r, search_keyword)
         string_data = Utility.string_escape(match.group(1))

@@ -41,7 +41,7 @@ class UnderstatPlayer():
         # Next, generate a request object based on the URL
         # Finally, using regular expressions, finding the json
         # data using the keyword for the query
-        string_data = Utility.build_and_match(PLAYER_URL, self.id, PLAYER_MATCHES_DATA)
+        string_data = Utility.build_and_match(PLAYER_URL, PLAYER_MATCHES_DATA, self.id)
 
         # TODO: What if empty?
         json_data = json.loads(string_data)
@@ -68,7 +68,7 @@ class UnderstatPlayer():
         # Next, generate a request object based on the URL
         # Finally, using regular expressions, finding the json
         # data using the keyword for the query
-        string_data = Utility.build_and_match(PLAYER_URL, self.id, PLAYER_GROUPED_DATA)
+        string_data = Utility.build_and_match(PLAYER_URL, PLAYER_GROUPED_DATA, self.id)
 
         # TODO: What if empty?
         json_data = json.loads(string_data)
@@ -96,7 +96,7 @@ class UnderstatPlayer():
         # Next, generate a request object based on the URL
         # Finally, using regular expressions, finding the json
         # data using the keyword for the query
-        string_data = Utility.build_and_match(PLAYER_URL, self.id, PLAYER_SHOT_DATA)
+        string_data = Utility.build_and_match(PLAYER_URL, PLAYER_SHOT_DATA, self.id)
 
         # TODO: What if empty?
         json_data = json.loads(string_data)
@@ -106,13 +106,11 @@ class UnderstatPlayer():
 
         return json_data
 
-    def get_player_min_max_data(self, position, **filter):
+    def get_player_min_max_data(self, **filter):
 
         """
         get the min, max and average data for the player.
 
-        :param position: the type of data to be fetched.
-        :type position: str
         :param \*\*filter: a dictionary of possible filters.
         :type \*\*filter: dict
         :return: min max data of the player
@@ -123,7 +121,7 @@ class UnderstatPlayer():
         # Next, generate a request object based on the URL
         # Finally, using regular expressions, finding the json
         # data using the keyword for the query
-        string_data = Utility.build_and_match(PLAYER_URL, self.id, PLAYER_MIN_MAX_DATA)
+        string_data = Utility.build_and_match(PLAYER_URL, PLAYER_MIN_MAX_DATA, self.id)
 
         # TODO: What if empty?
         json_data = json.loads(string_data)
@@ -133,7 +131,7 @@ class UnderstatPlayer():
 
         return json_data
 
-    def get_player_list_positions(self):
+    def get_player_positions(self):
 
         """
         get the possble player locations
@@ -149,15 +147,38 @@ class UnderstatPlayer():
         # Next, generate a request object based on the URL
         # Finally, using regular expressions, finding the json
         # data using the keyword for the query
-        string_data = Utility.build_and_match(PLAYER_URL, self.id, PLAYER_POSITIONS)
+        string_data = Utility.build_and_match(PLAYER_URL, PLAYER_POSITIONS, self.id)
 
         # TODO: What if empty?
         json_data = json.loads(string_data)
         return json_data
 
+    @staticmethod
+    def get_player_list_by_league(league, season):
+
+        """
+        get all possible players in a league.
+
+        :param leage: the league for which the data is to be fetched. multiple values can be passed seperated by a ',' .
+            possible values:
+                - EPL
+                - La_Liga
+                - Bundesliga
+                - Serie_A
+                - Ligue_1
+                - RFPL
+        :type league: str
+        :param season: season for which data is needed. For 2020/21 season, enter 2020.
+        :type season int:
+        :return: players in the league listed.
+        :rtpe: dict
+        """
+        all_leagues = [x.strip() for x in league.split(',')]
+
 
 class UnderstatTeam():
     """
+    A class to get data based on a team.
 
     """
     def __init__(self):
