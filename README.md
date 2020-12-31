@@ -31,7 +31,7 @@ The simplest way to install the package is by pip.
 pip install xgpy
 ```
 
-# Troubleshooting
+### Troubleshooting
 
 There is a known issue of pandas not installing correctly. Please make sure you have pandas
 installed before installing xgpy.
