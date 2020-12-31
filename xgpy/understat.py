@@ -1,6 +1,8 @@
 from xgpy.constants import *
 from xgpy.Utility import Utility
 import json
+import pandas as pd
+
 
 
 class UnderstatPlayer():
@@ -173,7 +175,22 @@ class UnderstatPlayer():
         :return: players in the league listed.
         :rtpe: dict
         """
+        # TODO: there seems to be an issue with certain player names
+        # special characters mess up
+
+        # get all parameters seperately. clean any dangling whitespaces.
         all_leagues = [x.strip() for x in league.split(',')]
+
+        # get data for every league. get only select parameters.
+        # append league name. concat all leagues and return as dict
+        data = []
+        for league in all_leagues:
+            json_data = Utility.build_and_match(LEAGUE_URL, PLAYER_LIST_DATA, *(league, season))
+            clean_data = pd.DataFrame(eval(json_data)).loc[:, PLAYER_DATA_COLUMNS]
+            clean_data['league'] = league
+
+            data += [clean_data]
+        return pd.concat(data).to_dict()
 
 
 class UnderstatTeam():
