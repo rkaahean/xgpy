@@ -1,7 +1,7 @@
 
 <p align="center">
   <h1 align="center">
-    xgpy: powerful python wrapper for football data
+    xgpy: a powerful python wrapper for football data
   </h1>
 </p>
 <p align="center">
@@ -19,7 +19,7 @@ Using a single function, one can retrieve data from multple places, compare and 
 | -------|--------|
 | understat.com | In Progress |
 | fbref.com | Next |
-| fantasypremierleague.com | Planned |
+| fantasy.premierleague.com | Planned |
 | whoscored.com | Planned |
 
 ## Installation
