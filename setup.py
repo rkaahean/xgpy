@@ -22,6 +22,7 @@ setuptools.setup(
     install_requires=[
         "pytest",
         "requests",
+        "cython",
         "pandas"
     ]
 )
