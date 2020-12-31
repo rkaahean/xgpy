@@ -7,7 +7,9 @@ A complete guide to the `xgpy` package.
 
    support/install
    support/introduction
-   understat/getting_started
+
+   modules
+
 
 
 Indices and tables
