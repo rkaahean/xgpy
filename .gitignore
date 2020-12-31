@@ -13,3 +13,6 @@ tests/__pycache__
 
 # Hide docs compile info
 docs/source/_*/
+
+# Hide test files
+sample.py
