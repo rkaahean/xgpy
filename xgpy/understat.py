@@ -8,59 +8,35 @@ class UnderstatPlayer():
     """
     A class that represents an understat football player logically.
 
-    ...
-
     Attributes
     ----------
     id : int
         the id of the player instance in understat.
 
-    Methods
-    --------
-    get_player_match_data(**filter)
-        get xG data for the player.
-
-    get_player_grouped_data_by_type(type='season', filter)
-        get grouped statistics of desired type.
-
-    get_player_shot_data(**filter)
-        get shot data.
-
-    get_player_min_max_data(position, **filter)
-        get min, max and average data for player.
-
-    get_player_list_positions()
-        get list of positions for the player.
-
     """
 
-    id = -1
-
     def __init__(self, player_id):
+
         """
-        Parameter
-        ---------
-        id : int
-            the id of the player who's data is needed.
+        intializer for the UnderstatPlayer class.
+
+        :param id: the id of the player who's data is needed.
+        :type id: int
         """
 
         self.id = player_id
 
     def get_player_match_data(self, **filter):
+
         """
         get xG data for the player.
 
-        Parameter
-        ---------
-        **filter: dict
-            a dictionary of possible filters.
-
-        Returns
-        -------
-        json
-            a json object contatining the information.
-
+        :param \*\*filter: a dictionary of possible filters.
+        :type \*\*filter: dict
+        :return: match data of the player
+        :rtype: list
         """
+
         # First generate the URL from which data will be fetched
         # Next, generate a request object based on the URL
         # Finally, using regular expressions, finding the json
@@ -79,20 +55,15 @@ class UnderstatPlayer():
 
         """
         get the per season data for the player.
-        Parameter
-        ---------
-        type: str
-            the type of data to be fetched. see website for more information.
 
-        **filter: dict
-            a dictionary of possible filters.
-
-        Returns
-        -------
-        json
-            a json object contatining the information.
-
+        :param type: the type of data to be fetched.
+        :type type: str
+        :param \*\*filter: a dictionary of possible filters.
+        :type \*\*filter: dict
+        :return: match data of the player
+        :rtype: list
         """
+
         # First generate the URL from which data will be fetched
         # Next, generate a request object based on the URL
         # Finally, using regular expressions, finding the json
@@ -114,17 +85,13 @@ class UnderstatPlayer():
 
         """
         get the shot data for the player.
-        Parameter
-        ---------
-        **filter: dict
-            a dictionary of possible filters.
 
-        Returns
-        -------
-        json
-            a json object contatining the information.
-
+        :param \*\*filter: a dictionary of possible filters.
+        :type \*\*filter: dict
+        :return: shot data of the player
+        :rtype: list
         """
+
         # First generate the URL from which data will be fetched
         # Next, generate a request object based on the URL
         # Finally, using regular expressions, finding the json
@@ -142,18 +109,16 @@ class UnderstatPlayer():
     def get_player_min_max_data(self, position, **filter):
 
         """
-        get the shot data for the player.
-        Parameter
-        ---------
-        **filter: dict
-            a dictionary of possible filters.
+        get the min, max and average data for the player.
 
-        Returns
-        -------
-        json
-            a json object contatining the information.
-
+        :param position: the type of data to be fetched.
+        :type position: str
+        :param \*\*filter: a dictionary of possible filters.
+        :type \*\*filter: dict
+        :return: min max data of the player
+        :rtype: list
         """
+
         # First generate the URL from which data will be fetched
         # Next, generate a request object based on the URL
         # Finally, using regular expressions, finding the json
@@ -172,17 +137,11 @@ class UnderstatPlayer():
 
         """
         get the possble player locations
-        Parameter
-        ---------
-        **filter: dict
-            a dictionary of possible filters.
 
-        Returns
-        -------
-        json
-            a json object contatining the information.
-
+        :return: list of positions of the player
+        :rtype: list
         """
+
         # TODO: currently, all possible positions (even GK for an outfield player) are being listed
         # would be better if we return just the positions played so far
 
@@ -195,3 +154,11 @@ class UnderstatPlayer():
         # TODO: What if empty?
         json_data = json.loads(string_data)
         return json_data
+
+
+class UnderstatTeam():
+    """
+
+    """
+    def __init__(self):
+        print("hello team")
