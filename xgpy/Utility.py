@@ -2,6 +2,7 @@ import requests
 import re
 from xgpy.constants import *
 import json
+import pandas as pd
 
 
 class Utility():
@@ -130,7 +131,6 @@ class Utility():
         """
 
         base_url = Utility.generate_request_url(base_url, *url_params)
-        print(base_url)
         r = Utility.generate_request_object(base_url)
         match = Utility.find_match(r, search_keyword)
         string_data = Utility.string_escape(match.group(1))
