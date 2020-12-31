@@ -4,7 +4,6 @@ import json
 import pandas as pd
 
 
-
 class UnderstatPlayer():
 
     """
@@ -161,7 +160,7 @@ class UnderstatPlayer():
         """
         get all possible players in a league.
 
-        :param leage: the league for which the data is to be fetched. multiple values can be passed seperated by a ',' .
+        :param league: the league for which the data is to be fetched. multiple values can be passed seperated by a ',' .
             possible values:
                 - EPL
                 - La_Liga
@@ -173,8 +172,9 @@ class UnderstatPlayer():
         :param season: season for which data is needed. For 2020/21 season, enter 2020.
         :type season int:
         :return: players in the league listed.
-        :rtpe: dict
+        :rtype: dict
         """
+
         # TODO: there seems to be an issue with certain player names
         # special characters mess up
 
@@ -198,5 +198,26 @@ class UnderstatTeam():
     A class to get data based on a team.
 
     """
-    def __init__(self):
-        print("hello team")
+    def __init__(self, team_name, league):
+        self.team_name = team_name
+        self.league = league
+
+
+    def get_team_league_history(self, season):
+
+        """
+        get the league history for a given team
+
+        :param season: season for which history is needed. For 2020/2021 season, input 2020.
+        :type season: str
+        :return: dictionary containing the data for matches played in given season
+        :rtype: dict
+        """
+
+        string_data = Utility.build_and_match(LEAGUE_URL, TEAMS_STANDINGS_DATA, *(self.league, season))
+        json_data = json.loads(string_data)
+
+        # get data only for the team instance
+        for key in json_data.keys():
+            if json_data[key]["title"] == ' '.join(self.team_name.split('_')):
+                return json_data[key]
