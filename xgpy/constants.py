@@ -18,6 +18,11 @@ ARG_SEASON = "season"
 ARG_START_DATE = 'start_date'
 ARG_END_DATE = 'end_date'
 ARG_POSITION = 'position'
+PLAYER_DATA_COLUMNS = [
+        'id',
+        'player_name',
+        'team_title'
+    ]
 
 # Variables for testing
 TEST_FILTER = {
