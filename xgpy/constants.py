@@ -1,6 +1,7 @@
 # MAIN URL's
 PLAYER_URL = "https://understat.com/player/{}"
 LEAGUE_URL = "https://understat.com/league/{}/{}/"
+TEAM_URL = "https://understat.com/team/{}/{}"
 
 # Pattern of the JSON variables
 DATA_PATTERN = r"{}\s+=\s+JSON.parse\(\'(.*)\'\)"
@@ -34,3 +35,4 @@ TEST_PLAYER_URL = "https://understat.com/player/{}".format(TEST_PLAYER_ID)
 TEST_SEASON = 2020
 TEST_LEAGUE = 'EPL'
 TEST_TEAM = 'Manchester_United'
+TEST_STR = '\x7B'
