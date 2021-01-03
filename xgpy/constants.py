@@ -14,6 +14,8 @@ PLAYER_MIN_MAX_DATA = "minMaxPlayerStats"
 PLAYER_POSITIONS = "positionsList"
 PLAYER_LIST_DATA = "playersData"
 TEAMS_STANDINGS_DATA = "teamsData"
+TEAMS_FIXTURES_DATA = "datesData"
+TEAMS_GROUPED_DATA = "statisticsData"
 
 # Filter constants
 ARG_SEASON = "season"
