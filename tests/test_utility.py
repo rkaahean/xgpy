@@ -1,5 +1,5 @@
 from xgpy.Utility import Utility
-from xgpy.constants import PLAYER_URL, TEST_PLAYER_ID, TEST_PLAYER_URL
+from xgpy.constants import PLAYER_URL, TEST_PLAYER_ID, TEST_PLAYER_URL, TEST_STR
 
 class TestUtility():
 
@@ -14,5 +14,7 @@ class TestUtility():
         # assert that the request went through well
         assert Utility.generate_request_object(url).status_code == 200
 
+    def test_string_escape(self):
 
-    # Add test for filtering data
+        # assert that the string conversion actually works
+        assert Utility.string_escape(TEST_STR) == "{"
