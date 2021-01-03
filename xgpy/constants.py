@@ -2,6 +2,7 @@
 PLAYER_URL = "https://understat.com/player/{}"
 LEAGUE_URL = "https://understat.com/league/{}/{}/"
 TEAM_URL = "https://understat.com/team/{}/{}"
+MATCH_URL = "https://understat.com/match/{}"
 
 # Pattern of the JSON variables
 DATA_PATTERN = r"{}\s+=\s+JSON.parse\(\'(.*)\'\)"
@@ -16,6 +17,7 @@ PLAYER_LIST_DATA = "playersData"
 TEAMS_STANDINGS_DATA = "teamsData"
 TEAMS_FIXTURES_DATA = "datesData"
 TEAMS_GROUPED_DATA = "statisticsData"
+MATCH_SHOT_DATA = "shotsData"
 
 # Filter constants
 ARG_SEASON = "season"
@@ -38,3 +40,4 @@ TEST_SEASON = 2020
 TEST_LEAGUE = 'EPL'
 TEST_TEAM = 'Manchester_United'
 TEST_STR = '\x7B'
+TEST_MATCH = 14596
