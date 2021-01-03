@@ -202,7 +202,6 @@ class UnderstatTeam():
         self.team_name = team_name
         self.league = league
 
-
     def get_team_league_history(self, season):
 
         """
@@ -221,3 +220,19 @@ class UnderstatTeam():
         for key in json_data.keys():
             if json_data[key]["title"] == ' '.join(self.team_name.split('_')):
                 return json_data[key]
+
+    def get_team_player_summary(self, season):
+
+        """
+        get the summary statistics for each player of the team for a given season.
+
+        :param season: season for which history is needed. For 2020/2021 season, input 2020.
+        :type season: str
+        :return: dictionary containing summary statistics of players
+        :rtype: dict
+        """
+
+        string_data = Utility.build_and_match(TEAM_URL, PLAYER_LIST_DATA, *(self.team_name, season))
+        json_data = json.loads(string_data)
+
+        return json_data
