@@ -286,3 +286,26 @@ class UnderstatTeam():
 
         json_data = Utility.filter_data(json_data, **filter)
         return json_data
+
+class UnderstatMatch():
+
+    """
+    A class to model a match between two teams and obatin information.
+    """
+
+    def __init__(self, match_id):
+        self.id = match_id
+
+    def get_match_shot_data(self):
+
+        """
+        get the shot data for the match.
+
+        :return: list containing shot data for the match
+        :rtype: list
+        """
+
+        string_data = Utility.build_and_match(MATCH_URL, MATCH_SHOT_DATA, self.id)
+        json_data = json.loads(string_data)
+
+        return json_data
