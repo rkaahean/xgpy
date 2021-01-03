@@ -132,7 +132,7 @@ class UnderstatPlayer():
 
         return json_data
 
-    def get_player_positions(self):
+    def get_player_positions(self, **filter):
 
         """
         get the possble player locations
@@ -152,6 +152,8 @@ class UnderstatPlayer():
 
         # TODO: What if empty?
         json_data = json.loads(string_data)
+
+        json_data = Utility.filter_data(json_data, **filter)
         return json_data
 
     @staticmethod
@@ -190,6 +192,7 @@ class UnderstatPlayer():
             clean_data['league'] = league
 
             data += [clean_data]
+
         return pd.concat(data).to_dict()
 
 
@@ -202,7 +205,7 @@ class UnderstatTeam():
         self.team_name = team_name
         self.league = league
 
-    def get_team_league_history(self, season):
+    def get_team_league_history(self, season, **filter):
 
         """
         get the league history for a given team
@@ -216,23 +219,70 @@ class UnderstatTeam():
         string_data = Utility.build_and_match(LEAGUE_URL, TEAMS_STANDINGS_DATA, *(self.league, season))
         json_data = json.loads(string_data)
 
+        json_data = Utility.filter_data(json_data, **filter)
+
         # get data only for the team instance
         for key in json_data.keys():
             if json_data[key]["title"] == ' '.join(self.team_name.split('_')):
                 return json_data[key]
 
-    def get_team_player_summary(self, season):
+    def get_team_player_summary(self, season, **filter):
 
         """
         get the summary statistics for each player of the team for a given season.
 
         :param season: season for which history is needed. For 2020/2021 season, input 2020.
         :type season: str
-        :return: dictionary containing summary statistics of players
-        :rtype: dict
+        :return: list containing summary statistics of players
+        :rtype: list
         """
 
         string_data = Utility.build_and_match(TEAM_URL, PLAYER_LIST_DATA, *(self.team_name, season))
         json_data = json.loads(string_data)
 
+        json_data = Utility.filter_data(json_data, **filter)
+        return json_data
+
+    def get_team_fixtures(self, season, **filter):
+
+        """
+        get the team fixtures for given season. for the fixtures that have been played, basic stats
+        are included.
+
+        :param season: season for which fixtures are needed. For 2020/2021 season, input 2020.
+        :type season: str
+        :return: list containing fixtures
+        :rtype: list
+
+        """
+
+        string_data = Utility.build_and_match(TEAM_URL, TEAMS_FIXTURES_DATA, *(self.team_name, season))
+        json_data = json.loads(string_data)
+
+        json_data = Utility.filter_data(json_data, **filter)
+        return json_data
+
+    def get_team_grouped_date_by_type(self, season, type='situation', **filter):
+
+        """
+        get the per season data for the team.
+
+        :param season: season for which fixtures are needed. For 2020/2021 season, input 2020.
+        :type season: str
+        :param type: the type of data to be fetched. This can be one of the following:
+            - situation
+            - formation
+            - gameState
+            - timing
+            - shotZone
+            - attackSpeed
+        :type type: str
+        :return: dictionary containing fixtures
+        :rtype: dict
+        """
+
+        string_data = Utility.build_and_match(TEAM_URL, TEAMS_GROUPED_DATA, *(self.team_name, season))
+        json_data = json.loads(string_data)
+
+        json_data = Utility.filter_data(json_data, **filter)
         return json_data
