@@ -18,6 +18,8 @@ TEAMS_STANDINGS_DATA = "teamsData"
 TEAMS_FIXTURES_DATA = "datesData"
 TEAMS_GROUPED_DATA = "statisticsData"
 MATCH_SHOT_DATA = "shotsData"
+MATCH_INFO_DATA = "match_info"
+MATCH_ROSTER_DATA = "rostersData"
 
 # Filter constants
 ARG_SEASON = "season"
