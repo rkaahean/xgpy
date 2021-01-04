@@ -33,6 +33,34 @@ understat.UnderstatTeam
 --------------------------------
 .. automodule:: xgpy.understat
 
-  get_team_league_history
-  --------------------------
-  .. automethod:: xgpy.understat.UnderstatTeam.get_team_league_history
+    get_team_league_history
+    --------------------------
+    .. automethod:: xgpy.understat.UnderstatTeam.get_team_league_history
+
+    get_team_player_summary
+    --------------------------
+    .. automethod:: xgpy.understat.UnderstatTeam.get_team_player_summary
+
+    get_team_fixtures
+    --------------------------
+    .. automethod:: xgpy.understat.UnderstatTeam.get_team_fixtures
+
+    get_team_grouped_date_by_type
+    -------------------------------
+    .. automethod:: xgpy.understat.UnderstatTeam.get_team_grouped_date_by_type
+
+understat.UnderstatMatch
+--------------------------------
+.. automodule:: xgpy.understat
+
+    get_match_shot_data
+    --------------------------
+    .. automethod:: xgpy.understat.UnderstatMatch.get_match_shot_data
+
+    get_match_stats
+    --------------------------
+    .. automethod:: xgpy.understat.UnderstatMatch.get_match_stats
+
+    get_match_roster
+    --------------------------
+    .. automethod:: xgpy.understat.UnderstatMatch.get_match_roster
