@@ -301,11 +301,41 @@ class UnderstatMatch():
         """
         get the shot data for the match.
 
-        :return: list containing shot data for the match
+        :return: list containing shot data for the match.
         :rtype: list
         """
 
         string_data = Utility.build_and_match(MATCH_URL, MATCH_SHOT_DATA, self.id)
+        json_data = json.loads(string_data)
+
+        return json_data
+
+    def get_match_stats(self):
+
+        """
+        get the general match statistics for both teams.
+
+        :return: a dictionary containing match statistics.
+        :rtype: dict
+
+        """
+
+        string_data = Utility.build_and_match(MATCH_URL, MATCH_INFO_DATA, self.id)
+        json_data = json.loads(string_data)
+
+        return json_data
+
+    def get_match_roster(self):
+
+        """
+        get the match roster for both teams.
+
+        :return: a dictionary containing match roster for both teams.
+        :rtype: dict
+
+        """
+
+        string_data = Utility.build_and_match(MATCH_URL, MATCH_ROSTER_DATA, self.id)
         json_data = json.loads(string_data)
 
         return json_data
