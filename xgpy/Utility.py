@@ -3,6 +3,7 @@ import re
 from xgpy.constants import *
 import json
 import pandas as pd
+from bs4 import BeautifulSoup
 
 
 class Utility():
@@ -163,3 +164,59 @@ class Utility():
             json_data = [x for x in json_data if x['season'] == season]
 
         return json_data
+
+    @staticmethod
+    def find_and_get_soup_table(r, mapped_type, mapped_competition):
+        """
+        get the data based on a the stat and the competition
+
+        :param mapped_type: the stat type converted into fbref format
+        :type mapped_type: str
+        :param mapped_competition: the competition converted into fbref format
+        :type mapped_competition: str
+
+        :return: specified stat data for competition of player
+        :rtype: dict
+
+        """
+
+
+        soup = BeautifulSoup(r.text, 'html.parser')                     # Create bs4 html parser
+        attribute_key = '_'.join([mapped_type, mapped_competition])     # create the attribute which will be used to find our data
+
+        table = soup.find('table', attrs={
+            'id': attribute_key                                         # find the data
+        })
+
+        # in case data not present, raise error to double check arguments
+        if not table:
+            raise ValueError('Please enter a valid stat type and competition or check if stat exists at {}'.format(r.url))
+
+
+        # find the header information
+
+        data = []
+        table_head = table.find('thead')
+
+        row = table_head.find_all('tr')[-1]
+        cols = row.find_all('th')
+        cols = [ele.text.strip() for ele in cols]
+        data.append([ele for ele in cols])
+
+
+        # get body of table
+        # iterate through the rows of the table.
+        # append everything in a line to an array.
+        # append the line to another array.
+        table_body = table.find('tbody')
+
+        rows = table_body.find_all('tr')
+        for row in rows:
+            cols = row.find_all([
+                    'th',
+                    'td'
+            ])
+            cols = [ele.text.strip() for ele in cols]
+            data.append([ele for ele in cols])
+
+        return data
