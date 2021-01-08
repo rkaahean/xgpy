@@ -19,25 +19,46 @@ class fbrefPlayer():
 
     def get_player_aggregate_stats(self, type, competition='dom_lg'):
 
+        """
+        get aggregate career statistics of player.
+
+        :param type: this is the type of statistics that are to be fetched. possible values:
+            - standard
+            - shooting
+            - passing
+            - passing_types
+            - goal_shot_creation
+            - defensive_actions
+            - possession
+            - playing_time
+            - miscellaneous
+        :type type: str
+        :param competition: the competition for which stats are to be fetched. possible values:
+            - all_competitions
+            - domestic_league
+            - domestic_cup
+            - internationl_cup
+            - national_team
+        """
+
+        # TODO: there seems to be something wrong with /all_comps/ endpoint
+        # TODO: in all_comps endpoint, not able to fetch other than standard stats. commented out.
+        # TODO: need to add error appropriate error handling when accessing dictionaries.
+        # TODO: format the output data with column names and remove unncessary columns (matches)
+
         main_url = Utility.generate_request_url(PLAYER_URL, *(self.id, FBREF_COMPETITION_TO_URL_MAP[competition]))
         r = Utility.generate_request_object(main_url)
         print(main_url)
-        soup = BeautifulSoup(r.text, 'html.parser')
 
-        data = []
-        ky = '_'.join([FBREF_STATS_TO_CLASS_MAP[type], FBREF_COMPETITION_TO_KEY_MAP[competition]])
+        if type not in FBREF_STATS_TO_CLASS_MAP.keys():
+            raise ValueError('{} is not a valid stat type. Please refer to documentation for stat types.'.format(type))
 
-        print(ky)
-        table = soup.find('table', attrs={'id':ky})
-        table_body = table.find('tbody')
+        if competition not in FBREF_COMPETITION_TO_URL_MAP.keys():
+            raise ValueError('{} is not a valid competition. Please refer to documentation for supported competitions.'.format(type))
 
-        rows = table_body.find_all('tr')
-        for row in rows:
-            cols = row.find_all([
-                'th',
-                'td'
-            ])
-            cols = [ele.text.strip() for ele in cols]
-            data.append([ele for ele in cols])
+        data = Utility.find_and_get_soup_table(r, FBREF_STATS_TO_CLASS_MAP[type], FBREF_COMPETITION_TO_URL_MAP[competition])
+        df = pd.DataFrame(data)
+        df.columns = df.iloc[0]
+        df = df.drop(df.index[0])
 
-        return data
+        return df
