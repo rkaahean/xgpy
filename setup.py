@@ -23,5 +23,6 @@ setuptools.setup(
         "pytest",
         "requests",
         "pandas",
+        "beautifulsoup4"
     ]
 )
