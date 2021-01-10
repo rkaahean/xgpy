@@ -1,3 +1,4 @@
 pytest
 requests
 pandas
+beautifulsoup4
