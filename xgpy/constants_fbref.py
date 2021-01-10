@@ -18,7 +18,7 @@ FBREF_STATS_TO_CLASS_MAP = {
 # part of the class id from which data is to be identified
 
 FBREF_COMPETITION_TO_KEY_MAP = {
-    'all_competitions': 'ks_collapsed',
+    'all_competitions': 'ks_expanded',
     'domestic_league': 'dom_lg',
     'domestic_cup': 'dom_cup',
     'internationl_cup': 'intl_cup',
@@ -34,3 +34,6 @@ FBREF_COMPETITION_TO_URL_MAP = {
     'internationl_cup': 'intl_cup',
     'national_team': 'nat_tm'
 }
+
+# Testing constants
+TEST_PLAYER_ID = '507c7bdf'
