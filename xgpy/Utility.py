@@ -4,6 +4,7 @@ from xgpy.constants import *
 import json
 import pandas as pd
 from bs4 import BeautifulSoup
+from bs4 import Comment
 
 
 class Utility():
@@ -166,6 +167,45 @@ class Utility():
         return json_data
 
     @staticmethod
+    def get_and_clean_data(data):
+        """
+        get clean data by converting to dataframe
+
+        :param data: a dictionary of raw data to be cleaned.
+        :type data: dict
+
+        :return: a dictionary of cleaned data.
+        :rtype: dict
+        """
+
+        df = pd.DataFrame(data)
+
+        # Make the columns the first row and
+        # drop the first row
+        df.columns = df.iloc[0]
+        df = df.drop(df.index[0])
+
+        # Drop the matches columns if it exists.
+        df = df.drop(['matches'], axis='columns', errors='ignore')
+
+        # reset index without new column
+        df = df.reset_index(drop = True)
+
+        # correct country values
+        if 'country' in df.columns:
+            df['country'] = pd.DataFrame(df['country'].str.split(' ').tolist()).iloc[:, -1].fillna('-')
+
+        # TODO: Some columns (like minutes) need to be in numerical format
+        df = df.apply(pd.to_numeric, errors='ignore')
+
+        # fill in missing values
+        # df = df.fillna('0')
+
+        # return as a dictionary
+        return df.to_dict()
+
+
+    @staticmethod
     def find_and_get_soup_table(r, mapped_type, mapped_competition):
         """
         get the data based on a the stat and the competition
@@ -180,13 +220,30 @@ class Utility():
 
         """
 
-
         soup = BeautifulSoup(r.text, 'html.parser')                     # Create bs4 html parser
         attribute_key = '_'.join([mapped_type, mapped_competition])     # create the attribute which will be used to find our data
 
-        table = soup.find('table', attrs={
-            'id': attribute_key                                         # find the data
-        })
+        # if all_comps and not standard, then go through comments
+        table = ''
+        if mapped_competition == 'ks_expanded' and mapped_type != 'stats_standard':
+
+            # Find all comments
+            comments = soup.find_all(string=lambda text: isinstance(text, Comment))
+            for c in comments:
+
+                # find the table containing the attribute in comments
+                soup = BeautifulSoup(c.extract(), 'html.parser')
+
+                table = soup.find('table', attrs={
+                    'id': attribute_key                                         # find the data
+                })
+                if table:
+                    break
+        else:
+            table = soup.find('table', attrs={
+                'id': attribute_key                                         # find the data
+            })
+
 
         # in case data not present, raise error to double check arguments
         if not table:
@@ -194,15 +251,14 @@ class Utility():
 
 
         # find the header information
-
+        # parse data-stat as they are more detailed
         data = []
         table_head = table.find('thead')
 
         row = table_head.find_all('tr')[-1]
         cols = row.find_all('th')
-        cols = [ele.text.strip() for ele in cols]
+        cols = [ele["data-stat"].strip() for ele in cols]
         data.append([ele for ele in cols])
-
 
         # get body of table
         # iterate through the rows of the table.
