@@ -1,6 +1,6 @@
 import requests
 import re
-from xgpy.constants import *
+from xgpy.constants_understat import DATA_PATTERN
 import json
 import pandas as pd
 from bs4 import BeautifulSoup

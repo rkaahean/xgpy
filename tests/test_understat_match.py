@@ -1,4 +1,4 @@
-from xgpy.constants import TEST_MATCH, TEST_FILTER, TEST_SEASON, TEST_LEAGUE
+from xgpy.constants_understat import TEST_MATCH, TEST_FILTER, TEST_SEASON, TEST_LEAGUE
 from xgpy.understat import UnderstatMatch
 
 class TestUnderstatMatch():

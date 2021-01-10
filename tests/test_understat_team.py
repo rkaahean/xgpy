@@ -1,4 +1,4 @@
-from xgpy.constants import TEST_TEAM, TEST_LEAGUE, TEST_SEASON
+from xgpy.constants_understat import TEST_TEAM, TEST_LEAGUE, TEST_SEASON
 from xgpy.understat import UnderstatTeam
 
 class TestUnderstatTeam():

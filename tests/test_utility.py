@@ -1,5 +1,5 @@
 from xgpy.Utility import Utility
-from xgpy.constants import PLAYER_URL, TEST_PLAYER_ID, TEST_PLAYER_URL, TEST_STR
+from xgpy.constants_understat import PLAYER_URL, TEST_PLAYER_ID, TEST_PLAYER_URL, TEST_STR
 
 class TestUtility():
 

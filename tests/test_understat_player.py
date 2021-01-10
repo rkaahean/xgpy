@@ -1,5 +1,5 @@
 #test output of get_player_match_data. See if all the headers are all right. See if the data received is not empty.
-from xgpy.constants import TEST_PLAYER_ID, TEST_FILTER, TEST_SEASON, TEST_LEAGUE
+from xgpy.constants_understat import TEST_PLAYER_ID, TEST_FILTER, TEST_SEASON, TEST_LEAGUE
 from xgpy.understat import UnderstatPlayer
 
 

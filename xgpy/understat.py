@@ -1,4 +1,4 @@
-from xgpy.constants import *
+from xgpy.constants_understat import *
 from xgpy.Utility import Utility
 import json
 import pandas as pd
