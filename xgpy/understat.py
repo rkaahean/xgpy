@@ -163,7 +163,7 @@ class UnderstatPlayer():
         get all possible players in a league.
 
         :param league: the league for which the data is to be fetched. multiple values can be passed seperated by a ',' .
-            possible values:
+            Possible values:
                 - EPL
                 - La_Liga
                 - Bundesliga
@@ -269,13 +269,14 @@ class UnderstatTeam():
 
         :param season: season for which fixtures are needed. For 2020/2021 season, input 2020.
         :type season: str
-        :param type: the type of data to be fetched. This can be one of the following:
-            - situation
-            - formation
-            - gameState
-            - timing
-            - shotZone
-            - attackSpeed
+        :param type: the type of data to be fetched.
+            This can be one of the following:
+                - situation
+                - formation
+                - gameState
+                - timing
+                - shotZone
+                - attackSpeed
         :type type: str
         :return: dictionary containing fixtures
         :rtype: dict

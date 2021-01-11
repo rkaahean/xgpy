@@ -7,6 +7,8 @@ class fbrefPlayer():
     A class dedicated to fetch information about a player
     from fbref.
 
+    :param player_id: the id of the player the class is based on
+    :type player_id: str
     """
 
     def __init__(self, player_id):
@@ -19,23 +21,26 @@ class fbrefPlayer():
         """
         get aggregate career statistics of player.
 
-        :param type: this is the type of statistics that are to be fetched. possible values:
-            - standard
-            - shooting
-            - passing
-            - passing_types
-            - goal_shot_creation
-            - defensive_actions
-            - possession
-            - playing_time
-            - miscellaneous
+        :param type: this is the type of statistics that are to be fetched.
+            Possible values:
+                - standard
+                - shooting
+                - passing
+                - passing_types
+                - goal_shot_creation
+                - defensive_actions
+                - possession
+                - playing_time
+                - miscellaneous
         :type type: str
-        :param competition: the competition for which stats are to be fetched. possible values:
-            - all_competitions
-            - domestic_league
-            - domestic_cup
-            - internationl_cup
-            - national_team
+        :param competition: the competition for which stats are to be fetched.
+            Possible values:
+                - all_competitions
+                - domestic_league
+                - domestic_cup
+                - internationl_cup
+                - national_team
+        :type competition: str
         :return: the aggregate career statistics for the given league and stat type
         :rtype: dict
         """
@@ -66,14 +71,15 @@ class fbrefPlayer():
         """
         get statistics for a particular season of a player.
 
-        :param type: this is the type of statistics that are to be fetched. possible values:
-            - summary
-            - passing
-            - passing_types
-            - gca (Goal and Shot Creation)
-            - defense (Defensive Actions)
-            - possession
-            - misc
+        :param type: this is the type of statistics that are to be fetched.
+            Possible values:
+                - summary
+                - passing
+                - passing_types
+                - gca (Goal and Shot Creation)
+                - defense (Defensive Actions)
+                - possession
+                - misc
         :type type: str
         :param season: The season for which data is needed. For the 2020/21 season, enter 2020
         :type season: int
@@ -102,3 +108,13 @@ class fbrefPlayer():
         # clean the data
         cleaned_data = Utility.get_and_clean_data(data)
         return cleaned_data
+
+class fbrefTeam():
+
+    """
+    A class dedicated to fetch information about a team
+    from fbref.
+
+    :param team_id: the id of the team the class is based on
+    :type team_id: str
+    """
