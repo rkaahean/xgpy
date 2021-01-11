@@ -186,7 +186,11 @@ class Utility():
         df = df.drop(df.index[0])
 
         # Drop the matches columns if it exists.
-        df = df.drop(['matches'], axis='columns', errors='ignore')
+        df = df.drop(['matches', 'match_report'], axis='columns', errors='ignore')
+
+        # drop empty columns for season based stats
+        if 'date' in df.columns:
+            df = df[df['date'] != ""]
 
         # reset index without new column
         df = df.reset_index(drop = True)
@@ -198,15 +202,12 @@ class Utility():
         # TODO: Some columns (like minutes) need to be in numerical format
         df = df.apply(pd.to_numeric, errors='ignore')
 
-        # fill in missing values
-        # df = df.fillna('0')
-
         # return as a dictionary
         return df.to_dict()
 
 
     @staticmethod
-    def find_and_get_soup_table(r, mapped_type, mapped_competition):
+    def find_and_get_soup_table(r, mapped_type, mapped_competition=''):
         """
         get the data based on a the stat and the competition
 
@@ -221,7 +222,13 @@ class Utility():
         """
 
         soup = BeautifulSoup(r.text, 'html.parser')                     # Create bs4 html parser
-        attribute_key = '_'.join([mapped_type, mapped_competition])     # create the attribute which will be used to find our data
+
+        # When competition argument is not required
+        if mapped_competition:
+            attribute_key = '_'.join([mapped_type, mapped_competition])     # create the attribute which will be used to find our data
+        else:
+            attribute_key = mapped_type
+
 
         # if all_comps and not standard, then go through comments
         table = ''
@@ -233,15 +240,14 @@ class Utility():
 
                 # find the table containing the attribute in comments
                 soup = BeautifulSoup(c.extract(), 'html.parser')
-
                 table = soup.find('table', attrs={
-                    'id': attribute_key                                         # find the data
+                    'id': attribute_key
                 })
                 if table:
                     break
         else:
             table = soup.find('table', attrs={
-                'id': attribute_key                                         # find the data
+                'id': attribute_key
             })
 
 
