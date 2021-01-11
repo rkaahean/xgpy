@@ -17,8 +17,8 @@ Using a single function, one can retrieve data from multple places, compare and 
 
 | Source | Status |
 | -------|--------|
-| understat.com | In Progress |
-| fbref.com | Next |
+| understat.com | Beta |
+| fbref.com | In Progress |
 | fantasy.premierleague.com | Planned |
 | whoscored.com | Planned |
 
@@ -30,6 +30,19 @@ The simplest way to install the package is by pip.
 ```
 pip install xgpy
 ```
+
+## Usage
+
+**xgpy** has multiple modules, each for every source. For example, in order to get stats from understat:
+
+```
+import xgpy
+from xgpy.understat import UnderstatPlayer
+
+player = UnderstatPlayer(1228)
+```
+
+And that's it! Look through the documentation and call upon a number of functions.
 
 ### Troubleshooting
 
