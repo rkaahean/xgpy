@@ -1,4 +1,4 @@
-from xgpy.Utility import Utility
+from xgpy.utility import Utility
 from xgpy.constants_understat import PLAYER_URL, TEST_PLAYER_ID, TEST_PLAYER_URL, TEST_STR
 
 class TestUtility():

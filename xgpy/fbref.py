@@ -1,5 +1,5 @@
 from xgpy.constants_fbref import *
-from xgpy.Utility import Utility
+from xgpy.utility import Utility
 import json
 import pandas as pd
 
