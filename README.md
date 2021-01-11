@@ -35,11 +35,12 @@ pip install xgpy
 
 **xgpy** has multiple modules, each for every source. For example, in order to get stats from understat:
 
-```
+```python
 import xgpy
 from xgpy.understat import UnderstatPlayer
 
 player = UnderstatPlayer(1228)
+match_data = player.get_player_match_data()
 ```
 
 And that's it! Look through the documentation and call upon a number of functions.
@@ -49,7 +50,7 @@ And that's it! Look through the documentation and call upon a number of function
 There is a known issue of pandas not installing correctly. Please make sure you have pandas
 installed before installing xgpy.
 
-```
+```bash
 pip install pandas
 pip install xgpy
 ```
