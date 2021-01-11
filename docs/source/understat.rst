@@ -1,3 +1,8 @@
+understat
+==========
+
+.. toctree::
+   :maxdepth: 10
 
 
 understat.UnderstatPlayer

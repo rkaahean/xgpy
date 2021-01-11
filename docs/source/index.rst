@@ -11,7 +11,6 @@ A complete guide to the `xgpy` package.
    modules
 
 
-
 Indices and tables
 ==================
 
