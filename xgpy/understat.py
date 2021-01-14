@@ -197,7 +197,12 @@ class UnderstatPlayer():
 
             data += [clean_data]
 
-        return pd.concat(data).to_dict()
+        # convert to numeric values
+        # ignore columns for which not possible
+        df = pd.concat(data)
+        df = df.apply(pd.to_numeric, errors='ignore')
+
+        return df.to_dict()
 
 
 class UnderstatTeam():
@@ -209,7 +214,7 @@ class UnderstatTeam():
 
         if league not in ARG_LEAGUE_NAMES:
             raise ValueError("{} is not a valid league argument. Please select from one of {}".format(league, ARG_LEAGUE_NAMES))
-        
+
         self.team_name = team_name
         self.league = league
 
