@@ -157,7 +157,7 @@ class UnderstatPlayer():
         return json_data
 
     @staticmethod
-    def get_player_list_by_league(league, season):
+    def get_player_list_by_league(league, season, detail_level='detailed'):
 
         """
         get all possible players in a league.
@@ -192,7 +192,12 @@ class UnderstatPlayer():
         data = []
         for league in all_leagues:
             json_data = Utility.build_and_match(LEAGUE_URL, PLAYER_LIST_DATA, *(league, season))
-            clean_data = pd.DataFrame(eval(json_data)).loc[:, PLAYER_DATA_COLUMNS]
+
+            df = pd.DataFrame(eval(json_data))
+            if detail_level == 'compact':
+                clean_data = df.loc[:, PLAYER_DATA_COLUMNS]
+            elif detail_level == 'detailed':
+                clean_data = df.loc[:, :]
             clean_data['league'] = league
 
             data += [clean_data]
