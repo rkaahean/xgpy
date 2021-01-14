@@ -26,6 +26,15 @@ ARG_SEASON = "season"
 ARG_START_DATE = 'start_date'
 ARG_END_DATE = 'end_date'
 ARG_POSITION = 'position'
+ARG_LEAGUE_NAMES = [
+    'EPL',
+    'La_Liga',
+    'Bundesliga',
+    'Serie_A',
+    'Ligue_1',
+    'RFPL'
+ ]
+
 PLAYER_DATA_COLUMNS = [  # for get_player_list_by_league
         'id',
         'player_name',
