@@ -180,6 +180,10 @@ class UnderstatPlayer():
         # TODO: there seems to be an issue with certain player names
         # special characters mess up
 
+        # Make sure the league is valid:
+        if league not in ARG_LEAGUE_NAMES:
+            raise ValueError("{} is not a valid league argument. Please select from one of {}".format(league, ARG_LEAGUE_NAMES))
+
         # get all parameters seperately. clean any dangling whitespaces.
         all_leagues = [x.strip() for x in league.split(',')]
 
@@ -202,6 +206,10 @@ class UnderstatTeam():
 
     """
     def __init__(self, team_name, league):
+
+        if league not in ARG_LEAGUE_NAMES:
+            raise ValueError("{} is not a valid league argument. Please select from one of {}".format(league, ARG_LEAGUE_NAMES))
+        
         self.team_name = team_name
         self.league = league
 
