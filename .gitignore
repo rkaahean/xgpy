@@ -16,3 +16,6 @@ docs/source/_*/
 
 # Hide test files
 sample.py
+
+# Hide env
+env/
