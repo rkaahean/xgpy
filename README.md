@@ -20,6 +20,7 @@ Using a single function, one can retrieve data from multple places, compare and 
 | understat.com | Beta |
 | fbref.com | In Progress |
 | fantasy.premierleague.com | Planned |
+| transfermarkt.us | Planned |
 | whoscored.com | Planned |
 
 ## Installation
