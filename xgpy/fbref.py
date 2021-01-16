@@ -1,5 +1,6 @@
 from xgpy.constants_fbref import *
 from xgpy.utility import Utility
+from bs4 import BeautifulSoup
 
 class fbrefPlayer():
 
@@ -81,7 +82,7 @@ class fbrefPlayer():
                 - possession
                 - misc
         :type type: str
-        :param season: The season for which data is needed. For the 2020/21 season, enter 2020
+        :param season: the season for which data is needed. For the 2020/21 season, enter 2020.
         :type season: int
 
         :return: the given season's and stat type of the player
@@ -118,3 +119,43 @@ class fbrefTeam():
     :param team_id: the id of the team the class is based on
     :type team_id: str
     """
+
+    def __init__(self, team_id):
+        self.id = team_id
+
+    def get_team_competition_names(self, season):
+        """
+        get the competitions which team is involved in for a given season
+
+        :param season: the season for which data is needed. For the 2020/21 season, enter 2020.
+        :type season: int
+
+        :return: the competition name and corresponding ID's
+        :rtpe: dict
+        """
+
+        # Build and connect to the URL for teams
+        season_param = str(season) + '-' + str(season + 1)
+        main_url = Utility.generate_request_url(TEAM_MAIN_URL, *(self.id, season_param))
+        r = Utility.generate_request_object(main_url)
+
+        # Get the list element that has information about competitions
+        soup = BeautifulSoup(r.text, 'html.parser')
+        ul_elem = soup.find('ul', attrs = {
+            'class': ""
+        })
+
+        # iterate through all rows in a list
+        # get the competition id from the href in list and
+        # corresponding competition name
+        li_elem = ul_elem.find_all("li")
+        link_to_name = {}
+        for link in li_elem:
+            href_link = link.find('a')['href']
+            comp_param = href_link.split('/')[5]
+            link_to_name[link.text.strip()] = comp_param
+
+        return link_to_name
+
+    def get_team_aggregate_stats():
+        print("Hi")
