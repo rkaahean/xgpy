@@ -1,6 +1,7 @@
 # Main URL's to fetch data
 PLAYER_MAIN_URL = 'https://fbref.com/en/players/{}/{}/'
 PLAYER_SEASON_URL = 'https://fbref.com/en/players/{}/matchlogs/{}/{}/'
+TEAM_MAIN_URL = "https://fbref.com/en/squads/{}/{}"
 
 
 # statistics class mapping
