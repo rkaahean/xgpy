@@ -192,6 +192,9 @@ class Utility():
         if 'date' in df.columns:
             df = df[df['date'] != ""]
 
+        if 'opponent' in df.columns:
+            df['opponent'] = df['opponent'].str.encode('utf-8')
+
         # reset index without new column
         df = df.reset_index(drop = True)
 
