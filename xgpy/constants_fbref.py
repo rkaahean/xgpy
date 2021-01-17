@@ -60,3 +60,5 @@ TEAM_SEASON_TABLE_ID = "matchlogs_all"
 
 # Testing constants
 TEST_PLAYER_ID = '507c7bdf'
+TEST_TEAM_ID = '19538871'
+TEST_SEASON = 2020
