@@ -2,10 +2,11 @@
 PLAYER_MAIN_URL = 'https://fbref.com/en/players/{}/{}/'
 PLAYER_SEASON_URL = 'https://fbref.com/en/players/{}/matchlogs/{}/{}/'
 TEAM_MAIN_URL = "https://fbref.com/en/squads/{}/{}"
+TEAM_COMP_URL = "https://fbref.com/en/squads/{}/{}/{}"
 
 
 # statistics class mapping
-FBREF_STATS_TO_CLASS_MAP = {
+FBREF_PLAYER_STATS_TO_CLASS_MAP = {
     'standard': 'stats_standard',
     'shooting': 'stats_shooting',
     'passing':  'stats_passing',
