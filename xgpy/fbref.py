@@ -157,7 +157,7 @@ class fbrefTeam():
 
         return link_to_name
 
-    def get_team_aggregate_stats(self, season, comp_id):
+    def get_team_aggregate_stats(self, season, comp_id, type='scores_and_fixtures'):
 
         """
         get the statistics of team in a given season and competition.
@@ -172,6 +172,25 @@ class fbrefTeam():
         :rtype: dict
         """
 
+        # TODO: What if competition does not exist?
+        # TODO: error handling for stat type
+
+        # Connect to the appropriate team, competition, season and stat type
         season_param = str(season) + '-' + str(season + 1)
-        main_url = Utility.generate_request_url(TEAM_MAIN_URL, *(self.id, season_param))
+        main_url = Utility.generate_request_url(TEAM_COMP_STAT_URL,
+                                                *(self.id, season_param, comp_id, FBREF_TEAM_STATS_TO_URL_MAP[type]))
         r = Utility.generate_request_object(main_url)
+
+        # Stupid fbref. The id for the class depends on the competition.
+        # so if it is all comps, then it is the standard constant.
+        # if not, the numerical part of the competition id is appended.
+        class_param = 'matchlogs_'
+        if comp_id != 'all_comps':
+            class_param += comp_id[1:]
+        else:
+            class_param = TEAM_SEASON_TABLE_ID
+
+        data = Utility.find_and_get_soup_table(r, class_param)
+        cleaned_data = Utility.get_and_clean_data(data)
+        
+        return cleaned_data
