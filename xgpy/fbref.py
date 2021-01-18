@@ -172,13 +172,26 @@ class fbrefTeam():
         :rtype: dict
         """
 
-        # TODO: What if competition does not exist?
-        # TODO: error handling for stat type
+        # error handling for competitions
+        # make sure comp_id is valid for given team and season
+        valid_comps = self.get_team_competition_names(season)
+        if comp_id not in list(valid_comps.values()):
+            raise ValueError('{} is not a valid competition_id for this team.'.format(comp_id))
+
+        # make sure stat type is valid.
+        # it is still possible that for competiton the stat may not
+        # exist
+        if type not in list(FBREF_TEAM_STATS_TO_URL_MAP.keys()):
+            raise ValueError('{} is not a valid stat type for team statistics'.format(type))
 
         # Connect to the appropriate team, competition, season and stat type
         season_param = str(season) + '-' + str(season + 1)
         main_url = Utility.generate_request_url(TEAM_COMP_STAT_URL,
-                                                *(self.id, season_param, comp_id, FBREF_TEAM_STATS_TO_URL_MAP[type]))
+                                                *(self.id,
+                                                  season_param,
+                                                  comp_id,
+                                                  FBREF_TEAM_STATS_TO_URL_MAP[type]
+                                                  ))
         r = Utility.generate_request_object(main_url)
 
         # Stupid fbref. The id for the class depends on the competition.
@@ -192,5 +205,5 @@ class fbrefTeam():
 
         data = Utility.find_and_get_soup_table(r, class_param)
         cleaned_data = Utility.get_and_clean_data(data)
-        
+
         return cleaned_data
