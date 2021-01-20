@@ -211,6 +211,7 @@ class UnderstatPlayer():
 
 
 class UnderstatTeam():
+
     """
     A class to get data based on a team.
 
@@ -222,6 +223,76 @@ class UnderstatTeam():
 
         self.team_name = team_name
         self.league = league
+
+
+    def get_team_league_table(self, season, **filter):
+
+        """
+        get the league table for a season based on paramaters.
+
+        :param season: season for which history is needed. For 2020/2021 season, input 2020.
+        :type season: str
+        :return: dictionary containing the data for matches played in given season
+        :rtype: dict
+        """
+
+        string_data = Utility.build_and_match(LEAGUE_URL, TEAMS_STANDINGS_DATA, *(self.league, season))
+        json_data = json.loads(string_data)
+
+        json_data = Utility.filter_data(json_data, **filter)
+
+        # Creating the table out of the extracted data
+        df = pd.DataFrame(json_data).T
+
+        # TODO: deal with NAN's
+        # TODO: rename columns
+        # TODO: form table
+        # TODO: add paramaters for to/from matchweeks
+        # iterate through all the clubs
+        # for each club, find the aggregate statistics
+
+        league_data = []
+        history_df = df['history'].apply(pd.Series)
+        for team_id in list(history_df.index.values):
+            print(team_id)
+            team_data = history_df.loc[team_id, :].apply(pd.Series)
+
+            agg_team_data = team_data.sum().iloc[1:]
+            agg_team_data['team_id'] = team_id
+            agg_team_data['matches_played'] = team_data.count()['date']
+
+            league_data += [agg_team_data.to_dict()]
+
+        # join to get team name information
+        df_agg_team_data = pd.DataFrame(league_data)
+        df_agg_team_data = df.set_index('id').join(df_agg_team_data.set_index('team_id'))
+
+        # renaming and picking only certain columns
+        df_agg_team_data = df_agg_team_data.rename(columns = {
+                    'title': 'team',
+                    'loses': 'losses',
+                    'scored': 'goals_scored',
+                    'missed': 'goals_allowed',
+                    'result': 'form'
+        })
+        df_agg_team_data['goals_difference'] = df_agg_team_data['goals_scored'] - df_agg_team_data['goals_allowed']
+        COLS = [
+            'team',
+            'matches_played',
+            'pts',
+            'goals_scored',
+            'goals_allowed',
+            'wins',
+            'draws',
+            'losses',
+            'xG',
+            'xGA'
+         ]
+        df_agg_team_data = df_agg_team_data.sort_values(by = ['pts', 'goals_difference'],
+                                                        ascending = [False,  False])
+
+        return df_agg_team_data[COLS].to_dict()
+
 
     def get_team_league_history(self, season, **filter):
 
