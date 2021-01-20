@@ -12,7 +12,7 @@
 ## What is it?
 
 **xgpy** is a Python package that aims to aggregate multiple football data sources into a single python module.
-Using a single function, one can retrieve data from multple places, compare and perform a more complete analysis.
+Using a single function, one can retrieve data from multiple sources, compare and perform a more complete analysis.
 
 
 | Source | Status |
@@ -32,6 +32,11 @@ The simplest way to install the package is by pip.
 pip install xgpy
 ```
 
+If you want to clone the repository instead:
+```
+git clone https://github.com/rkaahean/xgpy.git
+```
+
 ## Usage
 
 **xgpy** has multiple modules, each for every source. For example, in order to get stats from understat:
@@ -46,12 +51,6 @@ match_data = player.get_player_match_data()
 
 And that's it! Look through the documentation and call upon a number of functions.
 
-### Troubleshooting
+## Documentation
 
-There is a known issue of pandas not installing correctly. Please make sure you have pandas
-installed before installing xgpy.
-
-```bash
-pip install pandas
-pip install xgpy
-```
+All the documentation for the functions can be found at [here.](https://xgpy.readthedocs.io/en/latest/)
