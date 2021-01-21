@@ -8,7 +8,7 @@ setuptools.setup(
     version="0.0.2",
     author="Ranjan Srinivas",
     author_email="ranjan310151997@gmail.com",
-    description="A Python package to fetch xG data from understat.",
+    description="A Python package to fetch football data from multiple sources.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/rkaahean/xgpy",
