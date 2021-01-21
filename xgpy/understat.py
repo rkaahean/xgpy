@@ -245,18 +245,19 @@ class UnderstatTeam():
         df = pd.DataFrame(json_data).T
 
         # TODO: deal with NAN's
-        # TODO: rename columns
         # TODO: form table
-        # TODO: add paramaters for to/from matchweeks
+
         # iterate through all the clubs
         # for each club, find the aggregate statistics
 
         league_data = []
         history_df = df['history'].apply(pd.Series)
         for team_id in list(history_df.index.values):
-            print(team_id)
+
+            # get the dataframe for every team
             team_data = history_df.loc[team_id, :].apply(pd.Series)
 
+            # each row would have information about every match
             agg_team_data = team_data.sum().iloc[1:]
             agg_team_data['team_id'] = team_id
             agg_team_data['matches_played'] = team_data.count()['date']
@@ -290,7 +291,6 @@ class UnderstatTeam():
          ]
         df_agg_team_data = df_agg_team_data.sort_values(by = ['pts', 'goals_difference'],
                                                         ascending = [False,  False])
-
         return df_agg_team_data[COLS].to_dict()
 
 
