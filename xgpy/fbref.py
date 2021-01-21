@@ -124,6 +124,7 @@ class fbrefTeam():
         self.id = team_id
 
     def get_team_competition_names(self, season):
+
         """
         get the competitions which team is involved in for a given season
 
@@ -207,6 +208,34 @@ class fbrefTeam():
         cleaned_data = Utility.get_and_clean_data(data)
 
         return cleaned_data
+
+    def get_team_player_ids(self, season):
+
+        """
+        get the player_id's for all the players of a team in a given season.
+
+        :param season: the season for which data is needed. For the 2020/21 season, enter 2020.
+        :type season: int
+
+        :return: the player name and the corresponding ID's
+        :rtype: dict
+        """
+
+        # Build and connect to the URL for teams
+        # using all_comps endpoint to get
+        # as many players as possible
+        season_param = str(season) + '-' + str(season + 1)
+        TEAM_COMP_MAIN_URL = TEAM_MAIN_URL + '/all_comps'
+
+        main_url = Utility.generate_request_url(TEAM_COMP_MAIN_URL, *(self.id, season_param))
+        r = Utility.generate_request_object(main_url)
+
+        # using the standard stats endpoint for players
+        # of all competitions
+        data = Utility.find_and_get_soup_table(r, "stats_standard_ks_combined", return_header = True)
+
+        return data
+
 
 class fbrefCompetition():
     """
