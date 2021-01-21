@@ -207,3 +207,8 @@ class fbrefTeam():
         cleaned_data = Utility.get_and_clean_data(data)
 
         return cleaned_data
+
+class fbrefCompetition():
+    """
+    A class to fetch statistics on a competition level.
+    """
