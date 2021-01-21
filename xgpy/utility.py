@@ -210,7 +210,7 @@ class Utility():
 
 
     @staticmethod
-    def find_and_get_soup_table(r, mapped_type, mapped_competition=''):
+    def find_and_get_soup_table(r, mapped_type, mapped_competition='', return_header = False):
         """
         get the data based on a the stat and the competition
 
@@ -218,6 +218,8 @@ class Utility():
         :type mapped_type: str
         :param mapped_competition: the competition converted into fbref format
         :type mapped_competition: str
+        :param return_header: whether to return player_id's of player or not
+        :type return_header: bool
 
         :return: specified stat data for competition of player
         :rtype: dict
@@ -276,12 +278,33 @@ class Utility():
         table_body = table.find('tbody')
 
         rows = table_body.find_all('tr')
-        for row in rows:
-            cols = row.find_all([
-                    'th',
-                    'td'
-            ])
-            cols = [ele.text.strip() for ele in cols]
-            data.append([ele for ele in cols])
+
+        # if you just want header details
+        # used to get player names and their
+        # corresponding id's
+
+        # just do normal table extract
+        if not return_header:
+            for row in rows:
+                cols = row.find_all([
+                        'th',
+                        'td'
+                ])
+                cols = [ele.text.strip() for ele in cols]
+                data.append([ele for ele in cols])
+
+        # extract player id's
+        else:
+
+            # resetting the data field to store dict
+            data = {}
+            for row in rows:
+                th = row.find([
+                        'th'
+                ])
+
+                href_link = th.find('a')['href']
+                player_param = href_link.split('/')[3]
+                data[th['data-append-csv']] = player_param
 
         return data
