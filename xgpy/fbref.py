@@ -262,20 +262,41 @@ class fbrefCompetition():
         main_url = Utility.generate_request_url(COMP_MAIN_URL)
         r = Utility.generate_request_object(main_url)
 
-        soup = BeautifulSoup(r.text, 'html.parser')
+        # find elements with following parameters
+        parameter_map = {
+            'find_elem': 'tr',
+            'arg_attr': 'class',
+            'arg_value': ['gender-m', 'gender-f'],
+            'row_find': 'a',
+            'row_find_inner': 'href',
+            'row_start': 0,
+            'href_elem': 3
+        }
+        data = Utility.find_and_get_soup_element(r, parameter_map)
+        return data
 
-        # find all comps (male and female)
-        tr_comp = soup.find_all('tr', attrs = {
-            'class': ['gender-m', 'gender-f']
-        })
-        comp_map = {}
+    def get_competition_seasons_id(self):
 
-        for comp in tr_comp:
-            comp_name = comp.find('a').text
-            href_link = comp.find('a')['href']
-            master_comp_id = href_link.split('/')[3]
+        """
+        get the id for each seaason of the league mentioned.
 
-            comp_map[comp_name] = master_comp_id
+        :return: the id for all season's of the league involved.
+        :rtype: dict
+        """
 
-        # sorting by name for easier reading
-        return comp_map
+        main_url = Utility.generate_request_url(COMP_HISTORY_URL, self.master_competition_id)
+        r = Utility.generate_request_object(main_url)
+
+        # find elements
+        # with the following parameters
+        parameter_map = {
+            'find_elem': 'th',
+            'arg_attr': 'scope',
+            'arg_value': 'row',
+            'row_find': 'a',
+            'row_find_inner': 'href',
+            'row_start': 1,
+            'href_elem': 4
+        }
+        data = Utility.find_and_get_soup_element(r, parameter_map)
+        return data
