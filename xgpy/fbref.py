@@ -238,6 +238,44 @@ class fbrefTeam():
 
 
 class fbrefCompetition():
+
     """
-    A class to fetch statistics on a competition level.
+    A class to fetch statistics on a competition level for any season
     """
+
+    def __init__(self, id):
+
+        # this competition id is very different
+        # from the competition
+        self.master_competition_id = id
+
+    @staticmethod
+    def get_competition_names():
+
+        """
+        get the comeptition names & their id's
+
+        :return: a dicitonary containing the competition name and the master id
+        :rtype: dict
+        """
+
+        main_url = Utility.generate_request_url(COMP_MAIN_URL)
+        r = Utility.generate_request_object(main_url)
+
+        soup = BeautifulSoup(r.text, 'html.parser')
+
+        # find all comps (male and female)
+        tr_comp = soup.find_all('tr', attrs = {
+            'class': ['gender-m', 'gender-f']
+        })
+        comp_map = {}
+
+        for comp in tr_comp:
+            comp_name = comp.find('a').text
+            href_link = comp.find('a')['href']
+            master_comp_id = href_link.split('/')[3]
+
+            comp_map[comp_name] = master_comp_id
+
+        # sorting by name for easier reading
+        return comp_map
