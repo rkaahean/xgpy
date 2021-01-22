@@ -10,3 +10,19 @@ class TestfbrefPlayer():
 
             data = tp.get_player_aggregate_stats(stat, 'all_competitions')
             assert (isinstance(data, dict) and len(data) > 0)
+
+    def test_get_player_season_stats(self):
+
+        tp = fbrefPlayer(TEST_PLAYER_ID)
+        stat_types = [
+            "summary",
+            "passing",
+            "passing_types",
+            "gca",
+            "defense",
+            "possession",
+            "misc"
+         ]
+        for stat in stat_types:
+            data = tp.get_player_season_stats(stat, TEST_SEASON)
+            assert (isinstance(data, dict) and len(data) > 0)
