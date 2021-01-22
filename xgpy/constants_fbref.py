@@ -4,6 +4,7 @@ PLAYER_SEASON_URL = 'https://fbref.com/en/players/{}/matchlogs/{}/{}/'
 TEAM_MAIN_URL = "https://fbref.com/en/squads/{}/{}"
 TEAM_COMP_STAT_URL = "https://fbref.com/en/squads/{}/{}/matchlogs/{}/{}"
 COMP_MAIN_URL = "https://fbref.com/en/comps/"
+COMP_HISTORY_URL = "https://fbref.com/en/comps/{}/history"
 
 
 # statistics class mapping
