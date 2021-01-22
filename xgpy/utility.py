@@ -210,6 +210,34 @@ class Utility():
 
 
     @staticmethod
+    def find_and_get_soup_element(r, parameter_dict):
+
+        soup = BeautifulSoup(r.text, 'html.parser')
+
+        elem = soup.find_all(
+            parameter_dict['find_elem'],
+            attrs = {
+                parameter_dict['arg_attr'] : parameter_dict['arg_value']
+            }
+        )
+
+        data = {}
+
+        for item in elem[parameter_dict['row_start']:]:
+
+            a_item = item.find(parameter_dict['row_find'])
+            key = a_item.text
+            href_link = a_item[parameter_dict['row_find_inner']]
+
+            value = href_link.split('/')[parameter_dict['href_elem']]
+
+            data[key] = value
+
+        return data
+
+
+
+    @staticmethod
     def find_and_get_soup_table(r, mapped_type, mapped_competition='', return_header = False):
         """
         get the data based on a the stat and the competition
