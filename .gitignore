@@ -19,3 +19,7 @@ sample.py
 
 # Hide env
 env/
+
+# selenium stuf
+chromedriver.exe
+debug.log
