@@ -18,10 +18,11 @@ Using a single function, one can retrieve data from multiple sources, compare an
 | Source | Status |
 | -------|--------|
 | understat.com | Beta |
-| fbref.com | In Progress |
+| fbref.com | Tesing |
+| whoscored.com | In Progress |
 | fantasy.premierleague.com | Planned |
 | transfermarkt.us | Planned |
-| whoscored.com | Planned |
+
 
 ## Installation
 
