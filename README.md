@@ -7,6 +7,8 @@
 <p align="center">
    <a href="https://travis-ci.com/rkaahean/xgpy"><img src="https://travis-ci.com/rkaahean/xgpy.svg?branch=main"></a>
    <a href="https://xgpy.readthedocs.io/en/latest/"><img src="https://readthedocs.org/projects/xgpy/badge/?version=latest"></a>
+   <a href="https://www.codacy.com/gh/rkaahean/xgpy/dashboard"><img src="https://app.codacy.com/project/badge/Grade/8474374650fb4fe88b24bc51245187d8"></a>
+   <a href="https://badge.fury.io/py/xgpy"><img src="https://badge.fury.io/py/xgpy.svg" alt="PyPI version" height="18"></a>
 </p>
 
 ## What is it?
@@ -37,6 +39,12 @@ If you want to clone the repository instead:
 ```
 git clone https://github.com/rkaahean/xgpy.git
 ```
+
+To generate the requirements, use the following:
+```
+pipreqs xgpy/
+```
+I will probably start using `pipenv` in the near future.
 
 ## Usage
 
