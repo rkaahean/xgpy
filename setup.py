@@ -1,7 +1,17 @@
 import setuptools
+import os
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
+
+
+
+thelibFolder = os.path.dirname(os.path.realpath(__file__))
+requirementPath = thelibFolder + '/requirements.txt'
+install_requires = []
+if os.path.isfile(requirementPath):
+    with open(requirementPath) as f:
+        install_requires = f.read().splitlines()
 
 setuptools.setup(
     name="xgpy", # Replace with your own username
@@ -19,12 +29,13 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
-    install_requires=[
-        "pytest",
-        "requests",
-        "pandas",
-        "beautifulsoup4",
-        "selenium",
-        "undetected-chromedriver"
-    ]
+    # install_requires=[
+    #     "pytest",
+    #     "requests",
+    #     "pandas",
+    #     "beautifulsoup4",
+    #     "selenium",
+    #     "undetected-chromedriver"
+    # ]
+    install_requires = install_requires
 )
