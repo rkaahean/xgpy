@@ -5,7 +5,8 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 
-
+# reading in the requirements
+# from requirements.txt file
 thelibFolder = os.path.dirname(os.path.realpath(__file__))
 requirementPath = thelibFolder + '/requirements.txt'
 install_requires = []
@@ -29,13 +30,5 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     python_requires='>=3.6',
-    # install_requires=[
-    #     "pytest",
-    #     "requests",
-    #     "pandas",
-    #     "beautifulsoup4",
-    #     "selenium",
-    #     "undetected-chromedriver"
-    # ]
     install_requires = install_requires
 )
