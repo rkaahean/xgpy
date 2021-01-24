@@ -1,4 +1,3 @@
-
 <p align="center">
   <h1 align="center">
     xgpy: a powerful python wrapper for football data
@@ -16,7 +15,6 @@
 **xgpy** is a Python package that aims to aggregate multiple football data sources into a single python module.
 Using a single function, one can retrieve data from multiple sources, compare and perform a more complete analysis.
 
-
 | Source | Status |
 | -------|--------|
 | understat.com | Beta |
@@ -25,23 +23,22 @@ Using a single function, one can retrieve data from multiple sources, compare an
 | fantasy.premierleague.com | Planned |
 | transfermarkt.us | Planned |
 
-
 ## Installation
 
 The source code is currently [here.](https://github.com/rkaahean/xgpy)
 
 The simplest way to install the package is by pip.
-```
+```bash
 pip install xgpy
 ```
 
 If you want to clone the repository instead:
-```
+```bash
 git clone https://github.com/rkaahean/xgpy.git
 ```
 
 To generate the requirements, use the following:
-```
+```bash
 pipreqs xgpy/
 ```
 I will probably start using `pipenv` in the near future.
