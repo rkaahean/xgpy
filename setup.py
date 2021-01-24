@@ -23,6 +23,8 @@ setuptools.setup(
         "pytest",
         "requests",
         "pandas",
-        "beautifulsoup4"
+        "beautifulsoup4",
+        "selenium",
+        "undetected-chromedriver"
     ]
 )
