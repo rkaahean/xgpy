@@ -1,10 +1,17 @@
 import requests
 import re
 from xgpy.constants_understat import DATA_PATTERN
+from xgpy.constants_whoscored import WHOSCORED_DATA_PATTERN
 import json
 import pandas as pd
 from bs4 import BeautifulSoup
 from bs4 import Comment
+import undetected_chromedriver as uc
+from selenium import webdriver
+# from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
+
+
 
 
 class Utility():
@@ -48,6 +55,28 @@ class Utility():
             a url string to fetch the data from.
         """
         return base_url.format(*param)
+
+
+    @staticmethod
+    def generate_selenium_object(url: str):
+
+        """
+        return the driver object based on the URL.
+        """
+
+
+        # create a headless chrome instance
+        opts = uc.ChromeOptions()
+        opts.headless=True
+        opts.add_argument('--headless')
+        opts.add_argument("--log-level=0")
+        driver = uc.Chrome(options = opts)
+
+        driver.get(url)
+
+        return driver
+
+
 
     @staticmethod
     def generate_request_object(url: str):
@@ -94,7 +123,7 @@ class Utility():
                 .decode(encoding))        # Decode original encoding
 
     @staticmethod
-    def find_match(request, match_string: str):
+    def find_match(request, match_string: str, pattern = DATA_PATTERN, type = 'request'):
         """
         Parameters
         ----------
@@ -109,8 +138,12 @@ class Utility():
             returns a regex match object
         """
 
-        match_pattern = re.compile(DATA_PATTERN.format(match_string))
-        match = re.search(match_pattern, request.text)
+        match_pattern = re.compile(pattern.format(match_string))
+        if type == "selenium":
+            match = re.search(match_pattern, request.page_source)
+        else:
+            match = re.search(match_pattern, request.text)
+
 
         return match
 
@@ -133,8 +166,10 @@ class Utility():
         """
 
         base_url = Utility.generate_request_url(base_url, *url_params)
+        print(base_url)
         r = Utility.generate_request_object(base_url)
         match = Utility.find_match(r, search_keyword)
+        print(match)
         string_data = Utility.string_escape(match.group(1))
 
         return string_data
