@@ -7,3 +7,6 @@ MATCH_LIVE_URL = "https://www.whoscored.com/Matches/{}/Live/"
 
 # key variables for scraping whoscored
 MATCH_EVENT_DATA = "matchCentreData"
+
+# TESTING
+TEST_MATCH = "1519786"
