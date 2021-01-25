@@ -7,6 +7,7 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from bs4 import Comment
 import undetected_chromedriver as uc
+uc.install()
 from selenium import webdriver
 # from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
